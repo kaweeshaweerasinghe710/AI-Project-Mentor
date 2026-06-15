@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #222a2a;
+  --background: #101818;
   --foreground: #ECE9E4;
   --panel-bg: #18252C;
   --border-color: #243740;
@@ -15,8 +15,8 @@
   --color-panel: var(--panel-bg);
   --color-accent: var(--accent-color);
   --color-accent-muted: var(--accent-muted);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 body {
