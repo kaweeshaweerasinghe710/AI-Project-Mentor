@@ -43,8 +43,8 @@ export default function GradeRing({ overallGrade, overallScore }: GradeRingProps
           />
         </svg>
         <div className="absolute flex flex-col items-center justify-center font-mono">
-          
-          <span className="text-[20px] font-bold text-zinc-500 mt-1">{overallScore}% SCORE</span>
+          <span className="text-2xl font-extrabold text-[#ECE9E4]">{overallGrade}</span>
+          <span className="text-[9px] font-bold text-zinc-500 mt-0.5">{overallScore}% SCORE</span>
         </div>
       </div>
 
