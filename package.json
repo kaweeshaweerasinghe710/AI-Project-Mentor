@@ -1,0 +1,24 @@
+{
+  "name": "ai-project-mentor",
+  "version": "1.0.0",
+  "description": "AI Project Mentor is an AI-powered platform that analyzes GitHub repositories and provides personalized feedback, improvement suggestions and project specific guidance to help developers build better software.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaweeshaweerasinghe710/AI-Project-Mentor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kaweeshaweerasinghe710/AI-Project-Mentor/issues"
+  },
+  "homepage": "https://github.com/kaweeshaweerasinghe710/AI-Project-Mentor#readme"
+}
