@@ -1,5 +1,5 @@
 'use client';
-
+import { login, signup } from '../services/auth';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ShieldCheck, Mail, Lock } from 'lucide-react';
@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -26,12 +26,22 @@ export default function LoginPage() {
       return;
     }
 
-    // Save mock session token to localStorage
-    localStorage.setItem('user_token', 'mock-session-jwt-token-12345');
-    localStorage.setItem('user_email', email.trim());
+    try {
+      let data;
+      
+    
+      if (activeTab === 'login') {
+        data = await login(email.trim(), password);
+      } else {
+        data = await signup(email.trim(), password);
+      }
 
-    // Redirect to home dashboard page
-    router.push('/');
+      localStorage.setItem('user_token', data.token);
+      localStorage.setItem('user_email', email.trim());
+      router.push('/');
+    } catch (err: any) {
+      setError(err.message || 'Authentication failed. Please try again.');
+    }
   };
 
   const handleGoogleLogin = () => {
