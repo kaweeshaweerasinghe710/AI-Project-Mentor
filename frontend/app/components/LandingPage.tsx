@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { ShieldCheck } from 'lucide-react';
-import { presets } from '../data/presets';
 import RepoInput from './landing/RepoInput';
 import PresetCard from './landing/PresetCard';
 
