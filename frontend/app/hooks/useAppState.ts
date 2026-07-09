@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnalysisResult } from '../types';
-import { presets } from '../data/presets';
-import { generateMockAnalysis } from '../services/analyzer';
+import { analyzeRepositoryAPI } from '../services/analyzer';
 
 export type AppState = 'landing' | 'loading' | 'dashboard';
 export type TabId = 'overview' | 'suggestions' | 'quiz' | 'chat';
@@ -14,7 +13,9 @@ export function useAppState() {
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [activeTab, setActiveTab] = useState<TabId>('overview');
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [animationFinished, setAnimationFinished] = useState(false);
 
+  // 1. JWT Token Check
   useEffect(() => {
     const token = localStorage.getItem('user_token');
     const email = localStorage.getItem('user_email');
@@ -25,30 +26,59 @@ export function useAppState() {
         setUserEmail(email);
       }, 0);
     }
-  }, [router]);
+  }, []);
 
-  const handleStartAnalysis = (url: string, presetKey?: string) => {
+  // 2. Real API Analysis Trigger
+  useEffect(() => {
+    if (appState !== 'loading' || !repoUrl) return;
+
+    let active = true;
+
+    async function triggerAnalysis() {
+      try {
+        const result = await analyzeRepositoryAPI(repoUrl);
+        if (active) {
+          setAnalysisResult(result);
+        }
+      } catch (err: any) {
+        console.error(err);
+        if (active) {
+          setAppState('landing');
+          alert('Analysis failed: ' + (err.message || 'Unknown error'));
+        }
+      }
+    }
+
+    triggerAnalysis();
+
+    return () => {
+      active = false;
+    };
+  }, [appState, repoUrl]);
+
+  
+  useEffect(() => {
+    if (animationFinished && analysisResult && appState === 'loading') {
+      setAppState('dashboard');
+      setAnimationFinished(false); // Reset animation state for future analyses
+    }
+  }, [animationFinished, analysisResult, appState]);
+
+  const handleStartAnalysis = (url: string) => {
     setRepoUrl(url);
     setAppState('loading');
-
-    // Determine the result dataset
-    if (presetKey && presets[presetKey]) {
-      setAnalysisResult(presets[presetKey]);
-    } else {
-      // Custom URL entry
-      const customResult = generateMockAnalysis(url);
-      setAnalysisResult(customResult);
-    }
+    setAnalysisResult(null);
   };
 
   const handleFinishedLoading = () => {
-    setAppState('dashboard');
+    setAnimationFinished(true); 
   };
 
   const handleReset = () => {
     setAppState('landing');
     setRepoUrl('');
     setAnalysisResult(null);
+    setAnimationFinished(false); 
     setActiveTab('overview');
   };
 
