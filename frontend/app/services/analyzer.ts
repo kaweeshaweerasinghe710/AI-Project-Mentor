@@ -1,65 +1,96 @@
 import { AnalysisResult } from '../types';
-import { getHashCode } from '../utils/hash';
-import { customSuggestions, getCustomFileSystem, customReviewQuestions } from '../data/presets';
 
-// Generates dynamic analysis response for custom URLs typed by users
-export function generateMockAnalysis(repoUrl: string): AnalysisResult {
-  const cleanUrl = repoUrl.trim().replace(/\/$/, '');
-  const urlParts = cleanUrl.split('/');
-  const repoName = urlParts[urlParts.length - 1] || 'custom-repository';
-  
-  // Create variations of scores based on character hash code of url
-  const hash = getHashCode(repoUrl);
-
-  const scores = {
-    structure: 70 + (hash % 25), // 70-94
-    security: 60 + (hash % 35),  // 60-94
-    loadBalance: 55 + (hash % 40), // 55-94
-    performance: 65 + (hash % 30), // 65-94
-    overall: 0
-  };
-  scores.overall = Math.round((scores.structure + scores.security + scores.loadBalance + scores.performance) / 4);
+// Map the backend project structure to the frontend AnalysisResult structure
+export function mapBackendProjectToFrontend(project: any): AnalysisResult {
+  const score = project.score;
 
   let overallGrade = 'B';
-  if (scores.overall >= 90) overallGrade = 'A';
-  else if (scores.overall >= 85) overallGrade = 'A-';
-  else if (scores.overall >= 80) overallGrade = 'B+';
-  else if (scores.overall >= 75) overallGrade = 'B';
-  else if (scores.overall >= 70) overallGrade = 'B-';
-  else if (scores.overall >= 65) overallGrade = 'C+';
-  else if (scores.overall >= 60) overallGrade = 'C';
+  if (score >= 90) overallGrade = 'A';
+  else if (score >= 85) overallGrade = 'A-';
+  else if (score >= 80) overallGrade = 'B+';
+  else if (score >= 75) overallGrade = 'B';
+  else if (score >= 70) overallGrade = 'B-';
+  else if (score >= 65) overallGrade = 'C+';
+  else if (score >= 60) overallGrade = 'C';
   else overallGrade = 'D';
 
-  const languages = [
-    { name: 'TypeScript', percentage: 55 + (hash % 30), color: '#3178c6' },
-    { name: 'JavaScript', percentage: 20 + (hash % 15), color: '#f7df1e' },
-    { name: 'CSS', percentage: 5 + (hash % 10), color: '#563d7c' },
-    { name: 'HTML', percentage: 2 + (hash % 5), color: '#e34c26' }
-  ];
-  const totalPercentage = languages.reduce((acc, curr) => acc + curr.percentage, 0);
-  languages[0].percentage += (100 - totalPercentage); // ensure exact 100%
+  const scores = {
+    structure: score,
+    security: Math.max(50, score - 5),
+    loadBalance: Math.max(50, score - 10),
+    performance: Math.max(50, score - 2),
+    overall: score
+  };
+
+  const languages = project.techStack.map((tech: string, index: number) => ({
+    name: tech,
+    percentage: index === 0 ? 70 : 30 / (project.techStack.length - 1 || 1),
+    color: tech === 'TypeScript' ? '#3178c6' : tech === 'JavaScript' ? '#f7df1e' : '#563d7c'
+  }));
 
   return {
-    repoUrl,
-    repoName,
-    overallScore: scores.overall,
+    id: project.id,
+    repoUrl: project.repoUrl,
+    repoName: project.repoName,
+    overallScore: score,
     overallGrade,
     scores,
     stats: {
-      files: 20 + (hash % 80),
-      lines: 3000 + (hash % 15000),
+      files: project.suggestions.length + 10,
+      lines: (project.suggestions.length + 10) * 150,
       languages,
-      complexity: (hash % 3 === 0) ? 'High' : (hash % 3 === 1) ? 'Medium' : 'Low'
+      complexity: score > 85 ? 'Low' : score > 70 ? 'Medium' : 'High'
     },
-    chatGreeting: `I have completed scanning the repository at \`${repoUrl}\`. Overall, I gave it a scorecard score of ${scores.overall}% (${overallGrade}). I identified security and architecture details in the routes, database layer, and Docker configuration files. Let me know if you would like me to explain the issues or suggest refactor code!`,
-    suggestions: customSuggestions,
+    chatGreeting: `I have completed scanning the repository at \`${project.repoUrl}\`. Overall, I gave it a scorecard score of ${score}% (${overallGrade}). Let me know if you would like me to explain the issues or suggest refactor code!`,
+    
+    suggestions: project.suggestions.map((s: any) => ({
+      id: s.id,
+      category: s.category, // structure, security, loadBalance, performance
+      title: s.title,
+      description: s.description,
+      severity: s.severity, // low, medium, high
+      impact: s.severity === 'high' ? 'High impact on codebase security/performance.' : 'Improves maintainability.',
+      effort: s.severity === 'high' ? 'medium' : 'low',
+      filePath: s.filePath,
+      beforeCode: '// Refer to the file to locate the line',
+      afterCode: '// Please follow description'
+    })),
+    
     fileSystem: {
-      name: repoName,
-      path: repoName,
+      name: project.repoName,
+      path: project.repoName,
       isDir: true,
-      children: getCustomFileSystem(repoName)
+      children: []
     },
-    reviewQuestions: customReviewQuestions
+    
+    reviewQuestions: project.reviewQuestions.map((q: any) => ({
+      id: q.id,
+      question: q.question,
+      codeContext: q.codeContext || undefined,
+      guidance: q.guidance,
+      modelAnswer: q.modelAnswer
+    }))
   };
 }
 
+// call the backend API to analyze the repository and return the AnalysisResult
+export async function analyzeRepositoryAPI(repoUrl: string): Promise<AnalysisResult> {
+  const token = localStorage.getItem('user_token');
+  
+  const response = await fetch('http://localhost:5000/api/analysis', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ repoUrl })
+  });
+
+  const data = await response.json();
+  
+  if (!response.ok) {
+    throw new Error(data.message || 'Analysis failed');
+  }
+
+  return mapBackendProjectToFrontend(data.project);
+}
