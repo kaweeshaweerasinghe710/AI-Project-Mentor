@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { ShieldCheck } from 'lucide-react';
-import { presets } from '../data/presets';
 import RepoInput from './landing/RepoInput';
 import PresetCard from './landing/PresetCard';
 
@@ -12,8 +11,15 @@ interface LandingPageProps {
 
 export default function LandingPage({ onStartAnalysis }: LandingPageProps) {
   const handlePresetSelect = (key: string) => {
-    const preset = presets[key];
-    onStartAnalysis(preset.repoUrl, key);
+    let repoUrl = '';
+    if (key === 'nextjs-storefront-backend') {
+      repoUrl = 'https://github.com/kaweeshaweerasinghe710/AI-Project-Mentor';
+    } else if (key === 'secure-django-auth') {
+      repoUrl = 'https://github.com/django/django';
+    } else if (key === 'go-websocket-chat') {
+      repoUrl = 'https://github.com/gorilla/websocket';
+    }
+    onStartAnalysis(repoUrl, key);
   };
 
   return (
