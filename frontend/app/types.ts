@@ -51,6 +51,7 @@ export interface ScoreCategory {
 }
 
 export interface AnalysisResult {
+   id?: string; // Unique identifier for the analysis result
   repoUrl: string;
   repoName: string;
   overallScore: number;
