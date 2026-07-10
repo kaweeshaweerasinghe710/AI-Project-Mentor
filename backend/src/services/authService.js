@@ -28,7 +28,7 @@ async function registerUser(email, password) {
     { expiresIn: '24h' }
   );
 
-  return { token, user: { id: user.id, email: user.email } };
+  return { token, user: { id: user.id, email: user.email, role: user.role} };
 }
 
 // 2. User Login Logic
@@ -53,7 +53,7 @@ async function loginUser(email, password) {
     { expiresIn: '24h' }
   );
 
-  return { token, user: { id: user.id, email: user.email } };
+  return { token, user: { id: user.id, email: user.email, role: user.role } };
 }
 
 module.exports = {
