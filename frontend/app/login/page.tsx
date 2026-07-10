@@ -36,9 +36,15 @@ export default function LoginPage() {
         data = await signup(email.trim(), password);
       }
 
+           
       localStorage.setItem('user_token', data.token);
       localStorage.setItem('user_email', email.trim());
-      router.push('/');
+      localStorage.setItem('user_role', data.user.role);
+      if (data.user.role === 'admin') {
+        router.push('/admin'); 
+      } else {
+        router.push('/'); 
+      }
     } catch (err: any) {
       setError(err.message || 'Authentication failed. Please try again.');
     }
