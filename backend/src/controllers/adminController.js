@@ -34,7 +34,14 @@ exports.createAdmin = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists with this email' });
     }
-// Hash the password before saving
+
+    // Update all existing admins to regular users
+    await prisma.user.updateMany({
+      where: { role: 'admin' },
+      data: { role: 'user' }
+    });
+
+    // Hash the password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
     const newAdmin = await prisma.user.create({
       data: {
@@ -44,7 +51,6 @@ exports.createAdmin = async (req, res) => {
         role: 'admin'
       }
     });
-
     res.status(201).json({
       message: 'New Administrator created successfully',
       email: newAdmin.email
