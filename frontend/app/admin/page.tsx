@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { AlertOctagon, ArrowLeft, Loader2 } from 'lucide-react';
@@ -7,6 +6,7 @@ import Link from 'next/link';
 import AdminStatsGrid from '@/app/admin/components/AdminStatsGrid';
 import AdminRegistrationChart from '@/app/admin/components/AdminRegistrationChart';
 import AddAdminForm from './components/AddAdminForm';
+import ChangePasswordModal from '@/app/admin/components/ChangePasswordModal';
 interface RegistrationStat {
   date: string;
   count: number;
@@ -18,6 +18,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState<string | null>(null);
   const [totalUsers, setTotalUsers] = useState(0);
   const [showAddAdmin, setShowAddAdmin] = useState(false); 
+  const [showChangePassword, setShowChangePassword] = useState(false);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -96,20 +97,27 @@ export default function AdminDashboard() {
       {/* Admin Header */}
       <header className="border-b border-[#243740] bg-[#131D21]/90 py-5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-          <div className="flex items-center gap-180">
-            <span className="text-xs font-bold tracking-widest text-[#ECE9E4] uppercase">
-              AI_PROJECT_MENTOR  <span className="text-accent">ADMIN_PANEL</span>
-            </span>
-                      <div className="flex items-center gap-3">
+          <span className="text-xs font-bold tracking-widest text-[#ECE9E4] uppercase">
+            AI_PROJECT_MENTOR  <span className="text-accent">ADMIN_PANEL</span>
+          </span>
+          
+          <div className="flex items-center gap-3">
+            {/* Change PW Button */}
+            <button 
+              onClick={() => setShowChangePassword(true)}
+              className="flex items-center gap-1.5 rounded border border-[#243740] bg-[#18252C] px-3.5 py-1.5 text-[10px] text-zinc-450 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
+            >
+              Change Password
+            </button>
+
+            {/* + Add Admin Button */}
             <button 
               onClick={() => setShowAddAdmin(true)}
-              className="flex items-right gap-1.5 rounded border border-accent/40 bg-accent/5 px-3.5 py-1.5 text-[10px] text-accent hover:bg-accent hover:text-background transition duration-200 cursor-pointer"
+              className="flex items-center gap-1.5 rounded border border-accent/40 bg-accent/5 px-3.5 py-1.5 text-[10px] text-accent hover:bg-accent hover:text-background transition duration-200 cursor-pointer"
             >
               + Add Admin
             </button>
           </div>
-          </div>
-         
         </div>
       </header>
       <main className="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-10 space-y-8">
@@ -125,8 +133,9 @@ export default function AdminDashboard() {
           dailyAverage={dailyAvg} 
         />
         <AdminRegistrationChart stats={stats} />
-        <AdminRegistrationChart stats={stats} />
         {showAddAdmin && <AddAdminForm onClose={() => setShowAddAdmin(false)} />}
+        {showChangePassword && <ChangePasswordModal onClose={() => setShowChangePassword(false)} />}
+
       </main>
     </div>
   );
