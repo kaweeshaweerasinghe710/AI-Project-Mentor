@@ -34,3 +34,41 @@ exports.login = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+const bcrypt = require('bcryptjs');
+const prisma = require('../config/prisma');
+
+exports.changePassword = async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    const userId = req.user.id; 
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ message: 'Current and new passwords are required' });
+    }
+    const user = await prisma.user.findUnique({
+      where: { id: userId }
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'දැනට පවතින password එක වැරදියි!' });
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+   
+    await prisma.user.update({
+      where: { id: userId },
+      data: { password: hashedPassword }
+    });
+
+    res.status(200).json({ message: 'Password එක සාර්ථකව වෙනස් කරන ලදී!' });
+
+  } catch (error) {
+    console.error('Change Password Error:', error);
+    res.status(500).json({ message: 'Server error during password change' });
+  }
+};
