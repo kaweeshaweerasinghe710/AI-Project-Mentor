@@ -20,6 +20,14 @@ export default function AdminDashboard() {
   const [showAddAdmin, setShowAddAdmin] = useState(false); 
   const [showChangePassword, setShowChangePassword] = useState(false);
 
+    const handleSignOut = () => {
+    // Clear user data from localStorage
+    localStorage.removeItem('user_token');
+    localStorage.removeItem('user_email');
+    localStorage.removeItem('user_role');
+    router.push('/login');
+  };
+
   useEffect(() => {
     const fetchStats = async () => {
       try {
@@ -107,7 +115,7 @@ export default function AdminDashboard() {
               onClick={() => setShowChangePassword(true)}
               className="flex items-center gap-1.5 rounded border border-[#243740] bg-[#18252C] px-3.5 py-1.5 text-[10px] text-zinc-450 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
             >
-              Change Password
+              Change PW
             </button>
 
             {/* + Add Admin Button */}
@@ -117,8 +125,16 @@ export default function AdminDashboard() {
             >
               + Add Admin
             </button>
+
+            <button 
+              onClick={handleSignOut}
+              className="flex items-center gap-1.5 rounded border border-[#243740] bg-[#18252C] px-3.5 py-1.5 text-[10px] text-zinc-450 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
+            >
+              Sign Out
+            </button>
           </div>
-        </div>
+
+          </div>
       </header>
       <main className="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-10 space-y-8">
         
