@@ -115,7 +115,7 @@ export default function AdminDashboard() {
               onClick={() => setShowChangePassword(true)}
               className="flex items-center gap-1.5 rounded border border-[#243740] bg-[#18252C] px-3.5 py-1.5 text-[10px] text-zinc-450 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
             >
-              Change PW
+              Change Password
             </button>
 
             {/* + Add Admin Button */}
