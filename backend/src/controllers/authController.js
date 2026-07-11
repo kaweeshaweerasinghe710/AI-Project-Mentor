@@ -65,7 +65,7 @@ exports.changePassword = async (req, res) => {
       data: { password: hashedPassword }
     });
 
-    res.status(200).json({ message: 'Password එක සාර්ථකව වෙනස් කරන ලදී!' });
+    res.status(200).json({ message: 'password change successfully' });
 
   } catch (error) {
     console.error('Change Password Error:', error);
