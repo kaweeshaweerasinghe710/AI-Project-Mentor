@@ -12,4 +12,7 @@ router.post('/login', authController.login);
 // POST /api/auth/change-password
 router.post('/change-password', authMiddleware, authController.changePassword);
 
+// POST /api/auth/google
+router.post('/google', authController.googleLogin);
+
 module.exports = router;
