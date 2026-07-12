@@ -72,3 +72,21 @@ exports.changePassword = async (req, res) => {
     res.status(500).json({ message: 'Server error during password change' });
   }
 };
+
+exports.googleLogin = async (req, res) => {
+  try {
+    const { credentialToken } = req.body;
+    if (!credentialToken) {
+      return res.status(400).json({ message: 'Google credential token is required' });
+    }
+
+    const result = await authService.loginWithGoogle(credentialToken);
+    res.status(200).json({
+      message: 'Google login successful',
+      ...result
+    });
+  } catch (error) {
+    console.error('Google Auth Error:', error);
+    res.status(400).json({ message: 'Google authentication failed: ' + error.message });
+  }
+};
