@@ -96,5 +96,6 @@ async function loginWithGoogle(credentialToken) {
 
 module.exports = {
   registerUser,
-  loginUser
+  loginUser,
+   loginWithGoogle
 };
