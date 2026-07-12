@@ -58,6 +58,42 @@ async function loginUser(email, password) {
   return { token, user: { id: user.id, email: user.email, role: user.role } };
 }
 
+
+// 3. Google OAuth Login/Signup Logic
+async function loginWithGoogle(credentialToken) {
+  const ticket = await client.verifyIdToken({
+    idToken: credentialToken,
+    audience: process.env.GOOGLE_CLIENT_ID,
+  });
+  const payload = ticket.getPayload();
+  const { email, name } = payload;
+  let user = await prisma.user.findUnique({
+    where: { email }
+  });
+
+  // If user doesn't exist, create a new user with a random password
+  if (!user) {
+    const randomPassword = Math.random().toString(36).slice(-8);
+    const hashedPassword = await bcrypt.hash(randomPassword, 10);
+    user = await prisma.user.create({
+      data: {
+        email,
+        password: hashedPassword,
+        name: name || email.split('@')[0],
+        role: 'user'
+      }
+    });
+  }
+  // Generate JWT token
+  const token = jwt.sign(
+    { userId: user.id, passwordHash: user.password.substring(0, 10) },
+    process.env.JWT_SECRET || 'fallback_secret',
+    { expiresIn: '24h' }
+  );
+
+  return { token, user: { id: user.id, email: user.email, role: user.role } };
+}
+
 module.exports = {
   registerUser,
   loginUser
