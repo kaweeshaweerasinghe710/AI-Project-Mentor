@@ -58,8 +58,7 @@ async function loginUser(email, password) {
   return { token, user: { id: user.id, email: user.email, role: user.role } };
 }
 
-
-// 3. Google OAuth Login/Signup Logic
+// 3. Google OAuth Login/Signup Logic (ID Token Verification)
 async function loginWithGoogle(credentialToken) {
   const ticket = await client.verifyIdToken({
     idToken: credentialToken,
@@ -71,7 +70,6 @@ async function loginWithGoogle(credentialToken) {
     where: { email }
   });
 
-  // If user doesn't exist, create a new user with a random password
   if (!user) {
     const randomPassword = Math.random().toString(36).slice(-8);
     const hashedPassword = await bcrypt.hash(randomPassword, 10);
@@ -84,7 +82,7 @@ async function loginWithGoogle(credentialToken) {
       }
     });
   }
-  // Generate JWT token
+
   const token = jwt.sign(
     { userId: user.id, passwordHash: user.password.substring(0, 10) },
     process.env.JWT_SECRET || 'fallback_secret',
