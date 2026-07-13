@@ -55,7 +55,8 @@ export default function LoginPage() {
 
 
   return (
-   
+  <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
+  
       <div className="min-h-screen bg-background flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 font-mono">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         {/* Header Icon & Title */}
@@ -227,6 +228,7 @@ export default function LoginPage() {
         </div>
       </div>
       </div>
-   
+
+    </GoogleOAuthProvider>
   );
 }
