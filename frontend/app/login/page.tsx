@@ -3,6 +3,7 @@ import { login, signup } from '../services/auth';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ShieldCheck, Mail, Lock } from 'lucide-react';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 
 export default function LoginPage() {
