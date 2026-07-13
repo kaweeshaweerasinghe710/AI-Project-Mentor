@@ -53,10 +53,12 @@ export default function AdminRegistrationChart({ stats }: ChartProps) {
           </div>
 
           {/* Dates underneath the bars */}
-          <div className="flex justify-between text-[8px] font-bold text-zinc-550 px-1 overflow-x-auto scrollbar-none">
+          <div className="flex items-start gap-2 md:gap-4 pt-0 pb-2 overflow-x-auto scrollbar-thin">
             {stats.map((day, idx) => (
-              <div key={idx} className="min-w-[32px] text-center">
-                {day.date.split('-').slice(1).join('/')}
+              <div key={idx} className="w-12 shrink-0 flex flex-col items-center">
+                <div className="text-[8px] font-bold text-zinc-550 text-center">
+                  {day.date.split('-').slice(1).join('/')}
+                </div>
               </div>
             ))}
           </div>
