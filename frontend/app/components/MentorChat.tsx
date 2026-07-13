@@ -149,7 +149,7 @@ export default function MentorChat({ result }: MentorChatProps) {
       {/* Messages Window */}
       <div
         ref={scrollContainerRef}
-        className="flex-grow overflow-y-auto p-5 space-y-5 bg-[#131D21]/20 scrollbar-thin"
+        className="flex-grow overflow-y-auto p-5 flex flex-col space-y-5 bg-[#131D21]/20 scrollbar-thin"
       >
         {messages.map((msg) => (
           <MessageBubble key={msg.id} message={msg} />
