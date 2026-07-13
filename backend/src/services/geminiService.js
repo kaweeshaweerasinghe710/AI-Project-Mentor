@@ -7,6 +7,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 async function analyzeCodebase(repoName, files) {
   const model = genAI.getGenerativeModel({
     model: 'gemini-2.5-flash',
+    temperature: 0.0,
     generationConfig: {
       responseMimeType: 'application/json', // Ensure the response is in JSON format
     },
