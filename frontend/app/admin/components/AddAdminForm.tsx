@@ -51,31 +51,31 @@ export default function AddAdminForm({ onClose }: AddAdminFormProps) {
 
   return (
     // පසුබිම අඳුරු කර පිරිසිදුව පෙන්වන backdrop එකක්
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-fade-in font-sans">
       
       {/* Modal Box */}
-      <div className="relative max-w-sm w-full rounded-lg border border-[#243740] bg-[#18252C] p-6 shadow-2xl space-y-6">
+      <div className="relative max-w-sm w-full rounded-lg border border-border bg-panel p-6 shadow-2xl space-y-6">
         
         {/* Close [X] Button */}
         <button 
           onClick={onClose} 
-          className="absolute top-4 right-4 text-zinc-550 hover:text-accent transition duration-150 cursor-pointer"
+          className="absolute top-4 right-4 text-muted hover:text-accent transition duration-150 cursor-pointer"
         >
           <X className="h-4 w-4" />
         </button>
 
         {/* Title */}
-        <div className="flex items-center gap-2 border-b border-[#243740]/65 pb-3">
+        <div className="flex items-center gap-2 border-b border-border/65 pb-3">
           <UserPlus className="h-4 w-4 text-accent" />
-          <h3 className="text-xs font-bold text-[#ECE9E4] uppercase tracking-wider">
+          <h3 className="text-xs font-bold text-foreground uppercase tracking-wider">
             Add New Administrator
           </h3>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4 font-mono text-[10px]">
+        <form onSubmit={handleSubmit} className="space-y-4 text-xs">
           <div>
-            <label className="block text-[8px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5">
+            <label className="block text-[8px] font-bold text-muted uppercase tracking-widest mb-1.5 font-mono">
               Full Name
             </label>
             <input
@@ -84,12 +84,12 @@ export default function AddAdminForm({ onClose }: AddAdminFormProps) {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="John Doe"
-              className="w-full px-3 py-2 bg-[#131D21]/50 border border-[#243740] text-zinc-300 rounded focus:outline-none focus:border-accent"
+              className="w-full px-3 py-2 bg-surface/50 border border-border text-zinc-300 rounded focus:outline-none focus:border-accent text-xs"
             />
           </div>
 
           <div>
-            <label className="block text-[8px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5">
+            <label className="block text-[8px] font-bold text-muted uppercase tracking-widest mb-1.5 font-mono">
               Email Address
             </label>
             <input
@@ -98,12 +98,12 @@ export default function AddAdminForm({ onClose }: AddAdminFormProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="admin@example.com"
-              className="w-full px-3 py-2 bg-[#131D21]/50 border border-[#243740] text-zinc-300 rounded focus:outline-none focus:border-accent"
+              className="w-full px-3 py-2 bg-surface/50 border border-border text-zinc-300 rounded focus:outline-none focus:border-accent text-xs"
             />
           </div>
 
           <div>
-            <label className="block text-[8px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5">
+            <label className="block text-[8px] font-bold text-muted uppercase tracking-widest mb-1.5 font-mono">
               Password
             </label>
             <input
@@ -112,12 +112,12 @@ export default function AddAdminForm({ onClose }: AddAdminFormProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-3 py-2 bg-[#131D21]/50 border border-[#243740] text-zinc-300 rounded focus:outline-none focus:border-accent"
+              className="w-full px-3 py-2 bg-surface/50 border border-border text-zinc-300 rounded focus:outline-none focus:border-accent text-xs font-sans"
             />
           </div>
 
           {message && (
-            <div className={`p-2.5 rounded text-center font-bold tracking-wide border ${
+            <div className={`p-2.5 rounded text-center font-bold tracking-wide border font-mono text-[10px] ${
               message.type === 'success' 
                 ? 'bg-emerald-950/20 border-emerald-900/30 text-emerald-400' 
                 : 'bg-red-950/20 border-red-900/30 text-accent'
@@ -129,7 +129,7 @@ export default function AddAdminForm({ onClose }: AddAdminFormProps) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex justify-center items-center py-2 px-4 border border-accent bg-accent hover:bg-accent/90 text-background font-extrabold uppercase rounded cursor-pointer transition duration-150"
+            className="w-full flex justify-center items-center py-2 px-4 border border-accent bg-accent hover:bg-accent/90 text-background font-extrabold uppercase rounded cursor-pointer transition duration-150 text-xs"
           >
             {loading ? <Loader2 className="h-3 w-3 animate-spin" /> : 'Register Admin'}
           </button>

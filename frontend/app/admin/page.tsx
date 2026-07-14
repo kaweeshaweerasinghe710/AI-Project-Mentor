@@ -7,10 +7,12 @@ import AdminStatsGrid from '@/app/admin/components/AdminStatsGrid';
 import AdminRegistrationChart from '@/app/admin/components/AdminRegistrationChart';
 import AddAdminForm from './components/AddAdminForm';
 import ChangePasswordModal from '@/app/admin/components/ChangePasswordModal';
+
 interface RegistrationStat {
   date: string;
   count: number;
 }
+
 export default function AdminDashboard() {
   const router = useRouter();
   const [stats, setStats] = useState<RegistrationStat[]>([]);
@@ -20,8 +22,7 @@ export default function AdminDashboard() {
   const [showAddAdmin, setShowAddAdmin] = useState(false); 
   const [showChangePassword, setShowChangePassword] = useState(false);
 
-    const handleSignOut = () => {
-    // Clear user data from localStorage
+  const handleSignOut = () => {
     localStorage.removeItem('user_token');
     localStorage.removeItem('user_email');
     localStorage.removeItem('user_role');
@@ -69,22 +70,24 @@ export default function AdminDashboard() {
 
     fetchStats();
   }, [router]);
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex flex-col items-center justify-center font-mono text-zinc-500">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center font-sans text-muted">
         <Loader2 className="h-8 w-8 text-accent animate-spin mb-4" />
         <span>Loading Admin Panel Stats...</span>
       </div>
     );
   }
+
   if (error) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center px-4 font-mono text-xs">
+      <div className="min-h-screen bg-background flex items-center justify-center px-4 font-sans text-xs">
         <div className="max-w-md w-full rounded-lg border border-red-900/30 bg-[#1A1012] p-8 text-center space-y-6">
           <AlertOctagon className="h-12 w-12 text-red-500 mx-auto" />
-          <h2 className="text-sm font-bold text-red-400 uppercase tracking-widest">ACCESS DENIED</h2>
-          <p className="text-zinc-400 leading-relaxed">{error}</p>
-          <div className="pt-4">
+          <h2 className="text-sm font-bold text-red-400 uppercase tracking-widest font-mono">ACCESS DENIED</h2>
+          <p className="text-zinc-400 leading-relaxed font-sans">{error}</p>
+          <div className="pt-4 font-mono">
             <Link 
               href="/" 
               className="inline-flex items-center gap-2 text-accent hover:underline uppercase tracking-wider text-[10px] font-bold"
@@ -101,19 +104,19 @@ export default function AdminDashboard() {
   const dailyAvg = stats.length > 0 ? (totalUsers / stats.length).toFixed(1) : '0';
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-mono text-xs flex flex-col">
+    <div className="min-h-screen bg-background text-foreground font-sans text-xs flex flex-col">
       {/* Admin Header */}
-      <header className="border-b border-[#243740] bg-[#131D21]/90 py-5">
+      <header className="border-b border-border bg-surface/90 py-5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-          <span className="text-xs font-bold tracking-widest text-[#ECE9E4] uppercase">
+          <span className="text-xs font-bold tracking-widest text-foreground uppercase font-mono">
             AI_PROJECT_MENTOR  <span className="text-accent">ADMIN_PANEL</span>
           </span>
           
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 font-mono">
             {/* Change PW Button */}
             <button 
               onClick={() => setShowChangePassword(true)}
-              className="flex items-center gap-1.5 rounded border border-[#243740] bg-[#18252C] px-3.5 py-1.5 text-[10px] text-zinc-450 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
+              className="flex items-center gap-1.5 rounded border border-border bg-panel px-3.5 py-1.5 text-[10px] text-zinc-400 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
             >
               Change Password
             </button>
@@ -128,18 +131,17 @@ export default function AdminDashboard() {
 
             <button 
               onClick={handleSignOut}
-              className="flex items-center gap-1.5 rounded border border-[#243740] bg-[#18252C] px-3.5 py-1.5 text-[10px] text-zinc-450 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
+              className="flex items-center gap-1.5 rounded border border-border bg-panel px-3.5 py-1.5 text-[10px] text-zinc-400 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
             >
               Sign Out
             </button>
           </div>
-
-          </div>
+        </div>
       </header>
+
       <main className="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-10 space-y-8">
-        
         <div>
-          <h1 className="text-base font-bold text-[#ECE9E4] uppercase tracking-wider">
+          <h1 className="text-base font-bold text-foreground uppercase tracking-wider font-mono">
             User Registration Analytics
           </h1>
         </div>
@@ -151,7 +153,6 @@ export default function AdminDashboard() {
         <AdminRegistrationChart stats={stats} />
         {showAddAdmin && <AddAdminForm onClose={() => setShowAddAdmin(false)} />}
         {showChangePassword && <ChangePasswordModal onClose={() => setShowChangePassword(false)} />}
-
       </main>
     </div>
   );

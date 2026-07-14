@@ -72,7 +72,7 @@ export default function Home() {
         {appState === 'dashboard' && analysisResult && (
           <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 flex flex-col flex-1 gap-6 min-h-0">
             {/* Dashboard Tabs Bar */}
-            <div className="flex border-b border-[#243740] overflow-x-auto scrollbar-none gap-6 shrink-0">
+            <div className="flex border-b border-border overflow-x-auto scrollbar-none gap-6 shrink-0">
               {[
                 { id: 'overview', label: 'Dashboard Overview', icon: LayoutDashboard },
                 { id: 'suggestions', label: 'Review Suggestions', icon: Sparkles },
