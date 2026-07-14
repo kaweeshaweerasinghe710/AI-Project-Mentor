@@ -27,7 +27,7 @@ export default function DashboardOverview({ result, onNavigateToTab }: Dashboard
 
       {/* Metrics Section */}
       <div>
-        <h3 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6 font-mono">
+        <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-6">
           Dimension Scores
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
