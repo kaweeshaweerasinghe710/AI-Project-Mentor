@@ -13,7 +13,7 @@ export default function SuggestionCard({ suggestion }: SuggestionCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="rounded-lg border border-[#243740] bg-[#18252C]/45 hover:border-accent hover:bg-[#18252C] transition-all duration-300 overflow-hidden card-hover">
+    <div className="rounded-lg border border-border bg-panel/45 hover:border-accent hover:bg-panel transition-all duration-300 overflow-hidden card-hover font-sans">
       <SuggestionHeader
         suggestion={suggestion}
         isExpanded={isExpanded}
