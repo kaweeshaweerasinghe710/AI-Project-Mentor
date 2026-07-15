@@ -67,14 +67,14 @@ export default function ReviewQuestions({ questions }: ReviewQuestionsProps) {
 
   if (questions.length === 0) {
     return (
-      <div className="rounded-lg border border-[#243740] bg-[#18252C]/40 p-12 text-center text-zinc-550 font-mono text-[10px]">
+      <div className="rounded-lg border border-border bg-panel/40 p-12 text-center text-muted font-mono text-[10px]">
         {"// No code review questions generated for this codebase."}
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 font-mono text-xs select-none">
+    <div className="max-w-4xl mx-auto space-y-6 font-sans text-xs select-none">
       {/* Dashboard Header & Stats Block */}
       <ReviewHeader
         progressPercent={progressPercent}
@@ -86,13 +86,13 @@ export default function ReviewQuestions({ questions }: ReviewQuestionsProps) {
       {/* Filter and Search Bar */}
       <div className="flex gap-2">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-550" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted" />
           <input
             type="text"
             placeholder="FILTER BY KEYWORD..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 bg-[#18252C]/40 border border-[#243740] text-zinc-300 rounded font-mono text-[10px] placeholder-zinc-600 focus:outline-none focus:border-accent transition duration-150"
+            className="w-full pl-9 pr-4 py-2.5 bg-panel/40 border border-border text-zinc-300 rounded font-mono text-[10px] placeholder-zinc-650 focus:outline-none focus:border-accent transition duration-150"
           />
         </div>
       </div>
@@ -100,7 +100,7 @@ export default function ReviewQuestions({ questions }: ReviewQuestionsProps) {
       {/* Questions List */}
       <div className="space-y-4">
         {filteredQuestions.length === 0 ? (
-          <div className="rounded-lg border border-[#243740] bg-[#18252C]/40 p-12 text-center text-zinc-650 font-sans text-xs">
+          <div className="rounded-lg border border-border bg-panel/40 p-12 text-center text-muted text-xs">
             No questions match your filter query.
           </div>
         ) : (

@@ -29,7 +29,6 @@ export default function MentorChat({ result }: MentorChatProps) {
   const [isTyping, setIsTyping] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
- 
   useEffect(() => {
     const loadChatHistory = async () => {
       if (!result.id) return;
@@ -44,7 +43,6 @@ export default function MentorChat({ result }: MentorChatProps) {
         if (!response.ok) throw new Error('Failed to fetch chat history');
         
         const data = await response.json();
-
         
         if (data && data.length > 0) {
           const mappedHistory: ChatMessage[] = data.map((msg: any) => ({
@@ -53,7 +51,6 @@ export default function MentorChat({ result }: MentorChatProps) {
             text: msg.content,
             timestamp: new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
           }));
-
           
           setMessages([
             {
@@ -73,18 +70,15 @@ export default function MentorChat({ result }: MentorChatProps) {
     loadChatHistory();
   }, [result.id, result.chatGreeting]);
 
-  
   useEffect(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
     }
   }, [messages, isTyping]);
 
-  
   const handleSendMessage = async (text: string) => {
     if (!text.trim() || !result.id) return;
 
-    
     const userMsg: ChatMessage = {
       id: nextId(),
       sender: 'user',
@@ -97,7 +91,6 @@ export default function MentorChat({ result }: MentorChatProps) {
 
     try {
       const token = localStorage.getItem('user_token');
-      
       
       const response = await fetch(`http://localhost:5000/api/chat/${result.id}`, {
         method: 'POST',
@@ -115,7 +108,6 @@ export default function MentorChat({ result }: MentorChatProps) {
 
       const data = await response.json();
 
-     
       const mentorMsg: ChatMessage = {
         id: nextId(),
         sender: 'mentor',
@@ -127,7 +119,6 @@ export default function MentorChat({ result }: MentorChatProps) {
     } catch (error: any) {
       console.error(error);
       
-      
       const errorMsg: ChatMessage = {
         id: nextId(),
         sender: 'mentor',
@@ -136,13 +127,12 @@ export default function MentorChat({ result }: MentorChatProps) {
       };
       setMessages((prev) => [...prev, errorMsg]);
     } finally {
-      setIsTyping(true); // reset
       setIsTyping(false);
     }
   };
 
   return (
-    <div className="rounded-lg border border-[#243740] bg-[#18252C]/40 flex flex-col h-[550px] font-mono text-xs card-hover">
+    <div className="rounded-lg border border-border bg-panel/40 flex flex-col h-[550px] font-sans text-sm card-hover">
       {/* Chat Header */}
       <ChatHeader />
 
@@ -157,11 +147,11 @@ export default function MentorChat({ result }: MentorChatProps) {
 
         {/* Typing indicator */}
         {isTyping && (
-          <div className="space-y-1.5 animate-pulse">
-            <div className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest px-1">
+          <div className="space-y-1.5 animate-pulse self-start items-start">
+            <div className="text-[9px] font-bold text-muted uppercase tracking-widest px-1 font-mono">
               [AI_ARCHITECT]
             </div>
-            <div className="rounded border border-[#243740] bg-zinc-950/20 px-3.5 py-3 text-zinc-650 font-semibold tracking-wider">
+            <div className="rounded border border-border bg-zinc-950/20 px-3.5 py-3 text-zinc-600 font-semibold tracking-wider font-mono text-[10px]">
               typing...
             </div>
           </div>
@@ -169,20 +159,20 @@ export default function MentorChat({ result }: MentorChatProps) {
       </div>
 
       {/* Quick Prompts Chips */}
-      <div className="px-5 pb-3.5 pt-2.5 shrink-0 flex flex-wrap gap-2 bg-[#18252C] border-t border-[#243740]/40">
+      <div className="px-5 pb-3.5 pt-2.5 shrink-0 flex flex-wrap gap-2 bg-panel border-t border-border/40">
         {getQuickPrompts(result.repoName).map((prompt, idx) => (
           <button
             key={idx}
             onClick={() => handleSendMessage(prompt)}
             disabled={isTyping}
-            className="text-[9px] font-bold text-zinc-500 hover:text-accent bg-[#18252C] hover:bg-[#1C2C32] border border-[#243740] hover:border-accent px-2.5 py-1 rounded transition duration-200 cursor-pointer select-none uppercase tracking-wider"
+            className="text-[9px] font-bold text-muted hover:text-accent bg-panel hover:bg-[#1C2C32] border border-border hover:border-accent px-2.5 py-1 rounded transition duration-200 cursor-pointer select-none uppercase tracking-wider font-mono"
           >
             {prompt}
           </button>
         ))}
       </div>
 
-      {/* Input Form Footer */}
+      {/* Chat Input Area */}
       <ChatInput onSubmit={handleSendMessage} isTyping={isTyping} />
     </div>
   );

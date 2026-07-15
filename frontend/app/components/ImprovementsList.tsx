@@ -26,7 +26,7 @@ export default function ImprovementsList({ suggestions }: ImprovementsListProps)
   );
 
   return (
-    <div className="space-y-6 animate-fade-in font-mono">
+    <div className="space-y-6 animate-fade-in font-sans">
       {/* Category Tabs Filter */}
       <CategoryFilter
         categories={categories}
@@ -36,11 +36,11 @@ export default function ImprovementsList({ suggestions }: ImprovementsListProps)
 
       {/* Suggestion Cards */}
       {filteredSuggestions.length === 0 ? (
-        <div className="rounded-lg border border-[#243740] bg-[#18252C]/40 p-12 text-center text-zinc-650 text-[10px]">
+        <div className="rounded-lg border border-border bg-panel/40 p-12 text-center text-muted font-mono text-[10px]">
           {"// No suggestions identified for this category."}
         </div>
       ) : (
-        <div className="space-y-6 font-sans">
+        <div className="space-y-6">
           {filteredSuggestions.map((sug) => (
             <SuggestionCard key={sug.id} suggestion={sug} />
           ))}
