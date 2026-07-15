@@ -33,8 +33,8 @@ export default function QuestionCard({
   return (
     <div 
       onClick={onToggleExpand}
-      className={`rounded border transition-all duration-200 cursor-pointer select-none bg-[#18252C]/30 ${
-        isExpanded ? 'border-accent bg-[#18252C]/60' : 'border-[#243740] hover:border-accent/60'
+      className={`rounded border transition-all duration-200 cursor-pointer select-none bg-panel/30 font-sans ${
+        isExpanded ? 'border-accent bg-panel/60' : 'border-border hover:border-accent/60'
       }`}
     >
       <QuestionHeader

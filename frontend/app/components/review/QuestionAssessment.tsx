@@ -26,22 +26,22 @@ export default function QuestionAssessment({
   return (
     <div 
       onClick={(e) => e.stopPropagation()} 
-      className="border-t border-[#243740] bg-[#131D21]/30 p-4 space-y-4 font-sans text-xs cursor-default"
+      className="border-t border-border bg-surface/30 p-4 space-y-4 font-sans text-xs cursor-default"
     >
       {/* Guidance / Inspection Target */}
-      <div className="bg-[#18252C]/50 border border-[#243740]/60 rounded p-3.5 space-y-1.5">
-        <div className="flex items-center gap-1.5 text-[9px] font-bold font-mono uppercase tracking-wider text-zinc-500">
+      <div className="bg-panel/50 border border-border/60 rounded p-3.5 space-y-1.5">
+        <div className="flex items-center gap-1.5 text-[9px] font-bold font-mono uppercase tracking-wider text-muted">
           <Code className="h-3.5 w-3.5 text-accent" />
           <span>Code Review Guidance</span>
         </div>
-        <p className="text-[11px] leading-relaxed text-zinc-400 font-mono">
+        <p className="text-xs leading-relaxed text-zinc-300">
           {question.guidance}
         </p>
       </div>
 
       {/* Interactive Review Draft Box */}
       <div className="space-y-2">
-        <label className="block text-[10px] font-mono text-zinc-550 font-bold uppercase tracking-wider">
+        <label className="block text-[10px] font-mono text-muted font-bold uppercase tracking-wider">
           Your Assessment Notes 
         </label>
         <textarea
@@ -49,7 +49,7 @@ export default function QuestionAssessment({
           value={draft}
           onChange={(e) => onDraftChange(e.target.value)}
           placeholder="Draft your code review response, architectural recommendations, or code changes here..."
-          className="w-full bg-[#131D21]/60 border border-[#243740] text-zinc-300 rounded p-3 font-mono text-[10px] placeholder-zinc-700 focus:outline-none focus:border-accent transition duration-150 resize-none"
+          className="w-full bg-surface/60 border border-border text-zinc-300 rounded p-3 font-sans text-xs placeholder-zinc-700 focus:outline-none focus:border-accent transition duration-150 resize-none"
         />
       </div>
 
@@ -61,7 +61,7 @@ export default function QuestionAssessment({
           className={`inline-flex items-center gap-2 px-3 py-1.5 border rounded text-[10px] font-mono font-bold uppercase tracking-wider transition duration-150 cursor-pointer ${
             isReviewed 
               ? 'border-accent/40 bg-accent/5 text-accent' 
-              : 'border-[#243740] bg-[#18252C]/30 text-zinc-500 hover:text-zinc-300 hover:border-zinc-600'
+              : 'border-border bg-panel/30 text-muted hover:text-zinc-300 hover:border-zinc-650'
           }`}
         >
           {isReviewed ? <CheckCircle2 className="h-3.5 w-3.5" /> : <Circle className="h-3.5 w-3.5" />}
@@ -82,12 +82,12 @@ export default function QuestionAssessment({
 
       {/* Model Answer Slide-down Panel */}
       {showAnswer && (
-        <div className="rounded border border-[#DCA052]/20 bg-[#DCA052]/5 p-4 space-y-2 animate-slide-up mt-2">
+        <div className="rounded border border-accent/20 bg-accent/5 p-4 space-y-2 animate-slide-up mt-2">
           <div className="flex items-center gap-1.5 text-[9px] font-bold font-mono uppercase tracking-wider text-accent">
             <HelpCircle className="h-3.5 w-3.5" />
             <span>Senior Architect Reference Answer</span>
           </div>
-          <p className="text-[11px] leading-relaxed text-zinc-350 font-mono">
+          <p className="text-xs leading-relaxed text-zinc-300">
             {question.modelAnswer}
           </p>
         </div>
