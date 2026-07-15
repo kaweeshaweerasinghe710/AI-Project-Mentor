@@ -1,19 +1,19 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-/* 1. Design Tokens (CSS Variables) */
+/* 1. Graphite Design Tokens (Centralized Theme) */
 :root {
-  --background: #101818;
-  --foreground: #ECE9E4;
-  --panel-bg: #18252C;
-  --surface-bg: #131D21;
-  --border-color: #243740;
-  --accent-color: #DCA052;
-  --accent-muted: rgba(220, 160, 82, 0.12);
-  --text-muted-color: #71717a; /* zinc-500 equivalent */
+  --background: #0c0c17;      
+  --foreground: #f4f4f5;      
+  --panel-bg: #18181b;         
+  --surface-bg: #27272a;       
+  --border-color: #27272a;     
+  --accent-color: #3ecf8e;     
+  --accent-muted: rgba(62, 207, 142, 0.08);
+  --text-muted-color: #a1a1aa; 
 }
 
-/* 2. Mapping to Tailwind CSS Classes */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -34,7 +34,7 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Scrollbars & Animations */
+
 .scrollbar-thin::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -43,11 +43,11 @@ body {
   background: transparent;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: var(--border-color);
+  background: #27272a;
   border-radius: 4px;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: #334d5a;
+  background: #3f3f46;
 }
 .scrollbar-none::-webkit-scrollbar {
   display: none;
@@ -57,20 +57,21 @@ body {
   scrollbar-width: none;
 }
 
-/* Interactive Classes referencing our tokens */
+
 .card-hover {
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .card-hover:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent-color);
-  background-color: #1C2B32;
+  transform: translateY(-1px);
+  border-color: #3f3f46; 
+  background-color: #1c1c20;
 }
+
 .btn-hover {
-  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-hover:hover {
-  transform: translateY(-1px);
+  transform: translateY(-0.5px);
   border-color: var(--accent-color);
 }
 
@@ -79,5 +80,19 @@ body {
   to { opacity: 1; }
 }
 .animate-fade-in {
-  animation: fadeIn 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.animate-slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

@@ -15,7 +15,7 @@ export default function SummaryHighlights({ result, onNavigateToTab }: SummaryHi
       {/* Structural Success Panel */}
       <div className="rounded-lg border border-border bg-panel/50 p-6 card-hover">
         <div className="flex items-center gap-2 border-b border-border/65 pb-3 mb-4">
-          <CheckCircle className="h-4 w-4 text-[#859F3D]" />
+          <CheckCircle className="h-4 w-4 text-emerald-500" />
           <h3 className="text-xs font-bold text-foreground uppercase tracking-wider">
             Structural Success
           </h3>
