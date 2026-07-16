@@ -44,7 +44,7 @@ async function analyzeCodebase(repoName, files) {
         {
           "category": "<structure | security | loadBalance | performance>",
           "title": "<short descriptive title of the issue>",
-          "description": "<detailed description of the bug, security flaw or performance bottleneck and how to fix it>",
+          "description": "<detailed description of the issue. Break this down into distinct, readable lines or bullet points (e.g., separating the Problem, Impact, and Solution) using newline characters (\\n) to ensure maximum legibility. Do not merge everything into a single paragraph.>",
           "filePath": "<exact path of the file containing the issue>",
           "severity": "<low | medium | high>"
         }
