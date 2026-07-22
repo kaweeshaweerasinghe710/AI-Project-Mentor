@@ -45,12 +45,25 @@ export default function SuggestionHeader({
             {suggestion.filePath}
           </span>
         </div>
-        <h3 className="text-sm font-extrabold text-foreground uppercase tracking-wide">
+        <h3 className="text-base font-semibold text-foreground tracking-normal font-sans">
           {suggestion.title}
         </h3>
-        <p className="text-xs text-muted leading-relaxed max-w-3xl whitespace-pre-line">
-          {suggestion.description}
-        </p>
+        <div className="space-y-2.5 max-w-3xl">
+          {suggestion.description.split('\n').filter(line => line.trim() !== '').map((line, idx) => {
+            const colonIdx = line.indexOf(':');
+            const hasLabel = colonIdx !== -1 && colonIdx < 12;
+            const label = hasLabel ? line.substring(0, colonIdx + 1) : null;
+            const rest = hasLabel ? line.substring(colonIdx + 1) : line;
+            return (
+              <p key={idx} className="text-sm text-zinc-400 leading-loose font-normal font-sans">
+                {label && (
+                  <span className="font-bold text-foreground">{label}</span>
+                )}
+                {rest}
+              </p>
+            );
+          })}
+        </div>
       </div>
 
       <button
