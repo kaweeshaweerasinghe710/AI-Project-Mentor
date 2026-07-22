@@ -44,7 +44,7 @@ async function analyzeCodebase(repoName, files) {
         {
           "category": "<structure | security | loadBalance | performance>",
           "title": "<short descriptive title of the issue>",
-          "description": "<detailed description of the issue. Break this down into distinct, readable lines or bullet points (e.g., separating the Problem, Impact, and Solution) using newline characters (\\n) to ensure maximum legibility. Do not merge everything into a single paragraph.>",
+          "description": "<Write the description in exactly 3 clearly separated lines using the \\n newline character between each line. Line 1 must start with 'Problem:' and explain the issue. Line 2 must start with 'Impact:' and explain why it matters. Line 3 must start with 'Fix:' and explain the recommended solution. Do NOT write a single continuous paragraph.>",
           "filePath": "<exact path of the file containing the issue>",
           "severity": "<low | medium | high>"
         }
