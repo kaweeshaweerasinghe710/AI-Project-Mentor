@@ -48,7 +48,7 @@ export default function SuggestionHeader({
         <h3 className="text-sm font-extrabold text-foreground uppercase tracking-wide">
           {suggestion.title}
         </h3>
-        <p className="text-xs text-muted leading-relaxed max-w-3xl">
+        <p className="text-xs text-muted leading-relaxed max-w-3xl whitespace-pre-line">
           {suggestion.description}
         </p>
       </div>

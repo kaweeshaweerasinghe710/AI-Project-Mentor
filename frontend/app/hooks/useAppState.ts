@@ -15,20 +15,35 @@ export function useAppState() {
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [animationFinished, setAnimationFinished] = useState(false);
 
-  // 1. JWT Token Check
+  // Helper: JWT token expired check
+  const isTokenExpired = (token: string): boolean => {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.exp * 1000 < Date.now();
+    } catch {
+      return true;
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('user_token');
     const email = localStorage.getItem('user_email');
-    if (!token) {
+
+    if (!token || isTokenExpired(token)) {
+      // Token missing or expired — clear storage and redirect to login
+      localStorage.removeItem('user_token');
+      localStorage.removeItem('user_email');
       router.push('/login');
-    } else if (email) {
+      return;
+    }
+
+    if (email) {
       setTimeout(() => {
         setUserEmail(email);
       }, 0);
     }
   }, []);
 
-  // 2. Real API Analysis Trigger
   useEffect(() => {
     if (appState !== 'loading' || !repoUrl) return;
 
