@@ -5,17 +5,19 @@ const analysisRoutes = require('./routes/analysisRoutes');
 const projectRoutes = require('./routes/projectRoutes'); 
 const chatRoutes = require('./routes/chatRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const learningPathRoutes = require('./routes/learningPathRoutes');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', authRoutes);   // Use the authRoutes for authentication-related endpoints
+app.use('/api/auth', authRoutes);
 app.use('/api/analysis', analysisRoutes); 
 app.use('/api/projects', projectRoutes);  
 app.use('/api/chat', chatRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/learning', learningPathRoutes);
 
 
 app.get('/', (req, res) => {
