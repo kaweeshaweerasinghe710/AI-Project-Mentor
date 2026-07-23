@@ -1,4 +1,5 @@
 const analysisService = require('../services/analysisService');
+const { generateLearningPath } = require('./learningPathController');
 
 exports.createAnalysis = async (req, res) => {
   try {
@@ -9,6 +10,12 @@ exports.createAnalysis = async (req, res) => {
       return res.status(400).json({ message: 'Repository URL is required' });
     }
     const project = await analysisService.runAnalysis(repoUrl, userId);
+    
+    try {
+      await generateLearningPath(userId, project.suggestions || [], project.techStack || []);
+    } catch (learningErr) {
+      console.error('Learning path generation failed (non-critical):', learningErr.message);
+    }
 
     res.status(201).json({
       message: 'Repository analyzed and saved successfully',
