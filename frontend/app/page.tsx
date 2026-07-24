@@ -8,8 +8,9 @@ import DashboardOverview from './components/DashboardOverview';
 import ImprovementsList from './components/ImprovementsList';
 import ReviewQuestions from './components/ReviewQuestions';
 import MentorChat from './components/MentorChat';
+import LearningPath from './components/LearningPath';
 import { useAppState, TabId } from './hooks/useAppState';
-import { LayoutDashboard, Sparkles, HelpCircle, Bot } from 'lucide-react';
+import { LayoutDashboard, Sparkles, HelpCircle, Bot, GraduationCap } from 'lucide-react';
 
 export default function Home() {
   const {
@@ -42,6 +43,8 @@ export default function Home() {
         return <ReviewQuestions questions={analysisResult.reviewQuestions} />;
       case 'chat':
         return <MentorChat key={analysisResult.repoName} result={analysisResult} />;
+      case 'learning':
+        return <LearningPath />;
       default:
         return null;
     }
@@ -74,10 +77,11 @@ export default function Home() {
             {/* Dashboard Tabs Bar */}
             <div className="flex border-b border-border overflow-x-auto scrollbar-none gap-6 shrink-0">
               {[
-                { id: 'overview', label: 'Dashboard Overview', icon: LayoutDashboard },
-                { id: 'suggestions', label: 'Review Suggestions', icon: Sparkles },
-                { id: 'quiz', label: 'Review Questions', icon: HelpCircle },
-                { id: 'chat', label: 'AI Architect Chat', icon: Bot }
+                { id: 'overview',    label: 'Dashboard Overview',  icon: LayoutDashboard },
+                { id: 'suggestions', label: 'Review Suggestions',   icon: Sparkles },
+                { id: 'quiz',        label: 'Review Questions',      icon: HelpCircle },
+                { id: 'chat',        label: 'AI Architect Chat',     icon: Bot },
+                { id: 'learning',    label: 'Learning Path',         icon: GraduationCap },
               ].map((tab) => {
                 const TabIcon = tab.icon;
                 const isSelected = activeTab === tab.id;

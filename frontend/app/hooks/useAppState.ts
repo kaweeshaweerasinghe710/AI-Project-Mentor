@@ -4,7 +4,7 @@ import { AnalysisResult } from '../types';
 import { analyzeRepositoryAPI } from '../services/analyzer';
 
 export type AppState = 'landing' | 'loading' | 'dashboard';
-export type TabId = 'overview' | 'suggestions' | 'quiz' | 'chat';
+export type TabId = 'overview' | 'suggestions' | 'quiz' | 'chat' | 'learning';
 
 export function useAppState() {
   const router = useRouter();
