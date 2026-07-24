@@ -76,3 +76,21 @@ export interface ChatMessage {
   code?: string;
   timestamp: string;
 }
+
+export interface LearningStep {
+  id: string;
+  title: string;
+  category: 'security' | 'performance' | 'structure' | 'loadBalance';
+  resource?: string;
+  isCompleted: boolean;
+  completedAt?: string;
+  order: number;
+}
+
+export interface Badge {
+  id: string;
+  type: string;
+  label: string;
+  icon: string;
+  earnedAt: string;
+}
