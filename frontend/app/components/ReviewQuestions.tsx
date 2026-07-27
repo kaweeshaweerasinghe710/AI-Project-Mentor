@@ -31,11 +31,14 @@ export default function ReviewQuestions({ questions }: ReviewQuestionsProps) {
   };
 
   const handleToggleReviewed = (id: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setReviewedIds((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
+  e.stopPropagation();
+  setReviewedIds((prev) =>
+    prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+  );
+  if (currentIndex < filteredQuestions.length - 1) {
+    setCurrentIndex(prev => prev + 1);
+  }
+};
 
   const handleDraftChange = (id: string, value: string) => {
     setUserDrafts((prev) => ({
@@ -99,30 +102,49 @@ export default function ReviewQuestions({ questions }: ReviewQuestionsProps) {
         </div>
       </div>
 
-      {/* Questions List */}
-      <div className="space-y-4">
-        {filteredQuestions.length === 0 ? (
-          <div className="rounded-lg border border-border bg-panel/40 p-12 text-center text-muted text-xs">
-            No questions match your filter query.
-          </div>
-        ) : (
-          filteredQuestions.map((q, idx) => (
-            <QuestionCard
-              key={q.id}
-              question={q}
-              index={idx}
-              isExpanded={expandedId === q.id}
-              isReviewed={reviewedIds.includes(q.id)}
-              draft={userDrafts[q.id] || ''}
-              showAnswer={showAnswers[q.id] || false}
-              onToggleExpand={() => handleToggleExpand(q.id)}
-              onToggleReviewed={(e) => handleToggleReviewed(q.id, e)}
-              onDraftChange={(val) => handleDraftChange(q.id, val)}
-              onToggleAnswer={() => handleToggleAnswer(q.id)}
-            />
-          ))
-        )}
+<div className="space-y-4">
+  {filteredQuestions.length === 0 ? (
+    <div className="rounded-lg border border-border bg-panel/40 p-12 text-center text-muted text-xs">
+      No questions match your filter query.
+    </div>
+  ) : (
+    <>
+      {/* Question counter */}
+      <div className="flex items-center justify-between text-[10px] font-mono text-muted px-1">
+        <span>Question {currentIndex + 1} of {filteredQuestions.length}</span>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setCurrentIndex(i => Math.max(0, i - 1))}
+            disabled={currentIndex === 0}
+            className="px-3 py-1 border border-border rounded hover:border-accent hover:text-accent transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            ← Prev
+          </button>
+          <button
+            onClick={() => setCurrentIndex(i => Math.min(filteredQuestions.length - 1, i + 1))}
+            disabled={currentIndex === filteredQuestions.length - 1}
+            className="px-3 py-1 border border-border rounded hover:border-accent hover:text-accent transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            Next →
+          </button>
+        </div>
       </div>
+      <QuestionCard
+        key={filteredQuestions[currentIndex].id}
+        question={filteredQuestions[currentIndex]}
+        index={currentIndex}
+        isExpanded={expandedId === filteredQuestions[currentIndex].id}
+        isReviewed={reviewedIds.includes(filteredQuestions[currentIndex].id)}
+        draft={userDrafts[filteredQuestions[currentIndex].id] || ''}
+        showAnswer={showAnswers[filteredQuestions[currentIndex].id] || false}
+        onToggleExpand={() => handleToggleExpand(filteredQuestions[currentIndex].id)}
+        onToggleReviewed={(e) => handleToggleReviewed(filteredQuestions[currentIndex].id, e)}
+        onDraftChange={(val) => handleDraftChange(filteredQuestions[currentIndex].id, val)}
+        onToggleAnswer={() => handleToggleAnswer(filteredQuestions[currentIndex].id)}
+      />
+    </>
+  )}
+</div>
     </div>
   );
 }
