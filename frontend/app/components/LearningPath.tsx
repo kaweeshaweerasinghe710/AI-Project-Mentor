@@ -178,26 +178,6 @@ export default function LearningPath() {
           );
         })}
       </div>
-
-      {badges.length > 0 && (
-        <div className="rounded-lg border border-border bg-panel/50 p-5">
-          <h3 className="text-sm font-semibold text-foreground font-sans mb-4 flex items-center gap-2">
-            <Trophy className="h-4 w-4 text-accent" />
-            Earned Badges
-          </h3>
-          <div className="flex flex-wrap gap-3">
-            {badges.map((badge) => (
-              <div
-                key={badge.id}
-                className="flex items-center gap-2 bg-accent/5 border border-accent/20 rounded-lg px-4 py-2.5"
-              >
-                <span className="text-xl">{badge.icon}</span>
-                <span className="text-xs font-semibold text-foreground font-sans">{badge.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
