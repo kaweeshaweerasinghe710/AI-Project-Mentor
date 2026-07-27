@@ -16,12 +16,14 @@ export default function ReviewQuestions({ questions }: ReviewQuestionsProps) {
   const [reviewedIds, setReviewedIds] = useState<string[]>([]);
   const [userDrafts, setUserDrafts] = useState<Record<string, string>>({});
   const [showAnswers, setShowAnswers] = useState<Record<string, boolean>>({});
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleResetProgress = () => {
     setReviewedIds([]);
     setUserDrafts({});
     setShowAnswers({});
     setExpandedId(null);
+    setCurrentIndex(0);
   };
 
   const handleToggleExpand = (id: string) => {
