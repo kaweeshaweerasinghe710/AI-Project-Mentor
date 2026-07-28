@@ -4,16 +4,15 @@ import React, { useState } from 'react';
 import { ImprovementSuggestion } from '../../types';
 import { AlertTriangle, Wrench, Sparkles } from 'lucide-react';
 
-interface SuggestionCodeDiffProps {
+type SuggestionCodeDiffProps = {
   suggestion: ImprovementSuggestion;
-}
+};
 
 export default function SuggestionCodeDiff({ suggestion }: SuggestionCodeDiffProps) {
   const [codeTab, setCodeTab] = useState<'before' | 'after'>('before');
 
   return (
     <div className="border-t border-border bg-surface/20 font-sans text-xs">
-      {/* Impact / Effort Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-5 bg-panel/30 border-b border-border">
         <div className="flex items-start gap-2.5">
           <AlertTriangle className="h-4 w-4 text-accent shrink-0 mt-0.5" />
@@ -39,7 +38,6 @@ export default function SuggestionCodeDiff({ suggestion }: SuggestionCodeDiffPro
         </div>
       </div>
 
-      {/* Code Diff Panel */}
       <div className="p-5 space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-[10px] font-bold text-muted uppercase tracking-wider font-mono">
@@ -71,7 +69,6 @@ export default function SuggestionCodeDiff({ suggestion }: SuggestionCodeDiffPro
           </div>
         </div>
 
-        {/* Code Area */}
         <div className="relative rounded border border-border bg-surface overflow-hidden">
           <div className="absolute top-2.5 right-2.5 text-[9px] text-zinc-650 bg-panel px-2 py-0.5 rounded border border-border font-mono">
             {codeTab === 'before' ? 'Original' : 'Optimized'}

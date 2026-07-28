@@ -3,23 +3,36 @@
 import React, { useState } from 'react';
 import { ImprovementSuggestion } from '../../types';
 import SuggestionHeader from './SuggestionHeader';
-import SuggestionCodeDiff from './SuggestionCodeDiff';
+
 
 interface SuggestionCardProps {
   suggestion: ImprovementSuggestion;
 }
 
 export default function SuggestionCard({ suggestion }: SuggestionCardProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded,   setIsExpanded]   = useState(false);
+  const [showProblem,  setShowProblem]  = useState(false);
+  const [showFix,      setShowFix]      = useState(false);
+
+  const handleToggleExpand = () => {
+    if (isExpanded) {
+      setShowProblem(false);
+      setShowFix(false);
+    }
+    setIsExpanded(prev => !prev);
+  };
 
   return (
-    <div className="rounded-lg border border-border bg-panel/45 hover:border-accent hover:bg-panel transition-all duration-300 overflow-hidden card-hover font-sans">
+    <div className="rounded-lg border border-border bg-panel/45 hover:border-accent/40 hover:bg-panel transition-all duration-300 overflow-hidden font-sans">
       <SuggestionHeader
         suggestion={suggestion}
         isExpanded={isExpanded}
-        onToggleExpand={() => setIsExpanded(!isExpanded)}
+        showProblem={showProblem}
+        showFix={showFix}
+        onToggleExpand={handleToggleExpand}
+        onToggleProblem={() => setShowProblem(prev => !prev)}
+        onToggleFix={() => setShowFix(prev => !prev)}
       />
-      {isExpanded && <SuggestionCodeDiff suggestion={suggestion} />}
     </div>
   );
 }
