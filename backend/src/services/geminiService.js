@@ -31,7 +31,7 @@ async function analyzeCodebase(repoName, files) {
     1. Overall project quality score (from 0 to 100).
     2. Primary languages, libraries, and frameworks detected.
     3. List of code quality, security, and performance suggestions.
-    4. A set of 5 code review questions based on this codebase (not multiple choice) that test the developer's understanding of their own code design, along with reference model answers.
+    4. A set of 10 code review questions based on this codebase (not multiple choice) that test the developer's understanding of their own code design, along with reference model answers.
 
     Here are the source files:
     ${filesContext}

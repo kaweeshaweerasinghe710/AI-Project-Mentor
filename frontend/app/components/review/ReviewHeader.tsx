@@ -25,12 +25,8 @@ export default function ReviewHeader({
             Codebase Audit & Peer Review
           </h3>
         </div>
-        <p className="text-xs text-muted leading-normal">
-          Analyze the following architectural, security, and concurrency review checkpoints derived from your repository.
-        </p>
       </div>
-
-      {/* Progress Card */}
+      
       <div className="flex items-center gap-4 bg-panel/40 border border-border rounded px-4 py-2.5 min-w-[240px]">
         <div className="flex-1 space-y-1.5">
           <div className="flex justify-between items-center text-xs">

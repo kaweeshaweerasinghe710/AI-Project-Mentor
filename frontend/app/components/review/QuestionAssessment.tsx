@@ -27,14 +27,24 @@ function FeedbackLine({ line }: { line: string }) {
     const [emoji, style] = matched;
     const colonIdx = line.indexOf(':');
     const rest = colonIdx !== -1 ? line.substring(colonIdx + 1).trim() : line.replace(emoji, '').trim();
-
+    if (emoji === '🟢') {
+      return (
+        <div className={`rounded-lg border p-4 ${style.border} ${style.bg}`}>
+          <div className={`flex items-center gap-2 mb-2 text-[11px] font-mono font-bold uppercase tracking-wider ${style.color}`}>
+            <span className="text-lg leading-none">{emoji}</span>
+            <span>{style.label}</span>
+          </div>
+          <p className="text-sm text-zinc-200 leading-relaxed">{rest}</p>
+        </div>
+      );
+    }
     return (
-      <div className={`rounded-lg border p-4 ${style.border} ${style.bg}`}>
-        <div className={`flex items-center gap-2 mb-2 text-[11px] font-mono font-bold uppercase tracking-wider ${style.color}`}>
+      <div className="text-sm text-zinc-200 leading-relaxed">
+        <div className={`flex items-center gap-2 mb-1 text-[11px] font-mono font-bold uppercase tracking-wider ${style.color}`}>
           <span className="text-lg leading-none">{emoji}</span>
           <span>{style.label}</span>
         </div>
-        <p className="text-sm text-zinc-200 leading-relaxed">{rest}</p>
+        <p className="mb-2">{rest}</p>
       </div>
     );
   }
@@ -149,8 +159,7 @@ export default function QuestionAssessment({
 
       {aiFeedback && (
         <div className="rounded-lg border border-accent/25 bg-accent/5 p-6 space-y-3 animate-slide-up">
-          <div className="flex items-center gap-2 text-[10px] font-bold font-mono uppercase tracking-widest text-accent mb-1">
-            <Sparkles className="h-4 w-4" />
+          <div className="flex items-center gap-2 text-[10px] font-bold font-mono uppercase tracking-widest text-accent mb-10">
             <span>Senior Architect Feedback on Your Answer</span>
           </div>
           <div className="space-y-3">
