@@ -6,6 +6,7 @@ const projectRoutes = require('./routes/projectRoutes');
 const chatRoutes = require('./routes/chatRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const learningPathRoutes = require('./routes/learningPathRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/learning', learningPathRoutes);
+app.use('/api/review', reviewRoutes);
 
 
 app.get('/', (req, res) => {
