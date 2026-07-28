@@ -177,23 +177,8 @@ export default function QuestionAssessment({
           {isReviewed ? 'Mark as Unreviewed' : 'Mark as Reviewed'}
         </button>
 
-        <button
-          onClick={onToggleAnswer}
-          className="inline-flex items-center gap-2 text-xs font-mono font-bold text-muted hover:text-accent transition cursor-pointer"
-        >
-          <HelpCircle className="h-4 w-4" />
-          {showAnswer ? 'Hide Reference Answer' : 'See Reference Answer'}
-        </button>
       </div>
-      {showAnswer && (
-        <div className="rounded-lg border border-border bg-panel/40 p-5 space-y-3 animate-slide-up">
-          <div className="flex items-center gap-2 text-[10px] font-bold font-mono uppercase tracking-widest text-muted">
-            <HelpCircle className="h-4 w-4 text-accent" />
-            <span>Senior Architect Reference Answer</span>
-          </div>
-          <p className="text-sm leading-relaxed text-zinc-200">{question.modelAnswer}</p>
-        </div>
-      )}
+      
     </div>
   );
 }
