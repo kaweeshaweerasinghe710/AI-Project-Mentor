@@ -93,18 +93,7 @@ export default function LearningPath() {
           </div>
         </div>
       )}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-base font-semibold text-foreground">Learning Journey</h2>
-          <p className="text-xs text-muted mt-0.5">{doneCount} of {steps.length} milestones reached</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="w-28 bg-surface rounded-full h-1.5 overflow-hidden">
-            <div className="h-1.5 rounded-full bg-accent transition-all duration-700" style={{ width: `${progress}%` }} />
-          </div>
-          <span className="text-xs font-mono text-accent font-bold">{progress}%</span>
-        </div>
-      </div>
+      
       <div className="relative rounded-xl border border-border bg-panel/30 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5 pointer-events-none" />
 
