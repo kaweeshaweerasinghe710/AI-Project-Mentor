@@ -7,6 +7,7 @@ const chatRoutes = require('./routes/chatRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const learningPathRoutes = require('./routes/learningPathRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const autofixRoutes = require('./routes/autofixRoutes');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/learning', learningPathRoutes);
 app.use('/api/review', reviewRoutes);
+app.use('/api/autofix', autofixRoutes);
 
 
 app.get('/', (req, res) => {
