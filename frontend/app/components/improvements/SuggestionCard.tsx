@@ -13,6 +13,9 @@ export default function SuggestionCard({ suggestion }: SuggestionCardProps) {
   const [isExpanded,   setIsExpanded]   = useState(false);
   const [showProblem,  setShowProblem]  = useState(false);
   const [showFix,      setShowFix]      = useState(false);
+  const [autoFix, setAutoFix]       = useState<string | null>(null);
+  const [fixLoading, setFixLoading] = useState(false);
+  const [fixExplanation, setFixExplanation] = useState('');
 
   const handleToggleExpand = () => {
     if (isExpanded) {
