@@ -26,7 +26,42 @@ export default function SuggestionCard({ suggestion }: SuggestionCardProps) {
     setIsExpanded(prev => !prev);
   };
 
+  const handleAutoFix = async () => {
+    setFixLoading(true);
+    setAutoFix(null);
+    try {
+      const token = localStorage.getItem('user_token');
+      const res   = await fetch('http://localhost:5000/api/autofix/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          beforeCode:  suggestion.beforeCode,
+          title:       suggestion.title,
+          description: suggestion.description,
+          filePath:    suggestion.filePath,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Failed');
+      setAutoFix(data.fixedCode);
+      setFixExplanation(data.explanation || '');
+    } catch (err) {
+      console.error('Auto-fix failed:', err);
+    } finally {
+      setFixLoading(false);
+    }
+  };
 
+  const handleCopy = () => {
+    if (autoFix) {
+      navigator.clipboard.writeText(autoFix);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   return (
     <div className="rounded-lg border border-border bg-panel/45 hover:border-accent/40 hover:bg-panel transition-all duration-300 overflow-hidden font-sans">
