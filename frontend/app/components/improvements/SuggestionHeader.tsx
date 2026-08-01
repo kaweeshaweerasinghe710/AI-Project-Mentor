@@ -1,8 +1,7 @@
 'use client';
-
 import React from 'react';
 import { ImprovementSuggestion } from '../../types';
-import { ShieldAlert, Code2, Server, Cpu, ChevronDown, ChevronUp, Bug, Wrench } from 'lucide-react';
+import { ShieldAlert, Code2, Server, Cpu, ChevronDown, ChevronUp, Bug, Wrench, Sparkles, Loader2, ClipboardCopy, Check } from 'lucide-react';
 
 const getSeverityBadgeColor = (severity: 'low' | 'medium' | 'high') => {
   if (severity === 'high')   return 'text-accent border-accent/20 bg-accent/5';
@@ -16,6 +15,7 @@ const CATEGORY_ICONS: Record<string, React.ComponentType<{ className?: string }>
   loadBalance: Server,
   performance: Cpu,
 };
+
 function parseSections(description: string) {
   const sections: Record<string, string> = {};
   for (const line of description.split('\n').filter(l => l.trim())) {
@@ -34,9 +34,15 @@ interface SuggestionHeaderProps {
   isExpanded:      boolean;
   showProblem:     boolean;
   showFix:         boolean;
+  autoFix:         string | null;
+  fixLoading:      boolean;
+  fixExplanation:  string;
+  copied:          boolean;
   onToggleExpand:  () => void;
   onToggleProblem: () => void;
   onToggleFix:     () => void;
+  onAutoFix:       () => void;
+  onCopy:          () => void;
 }
 
 export default function SuggestionHeader({
@@ -44,15 +50,23 @@ export default function SuggestionHeader({
   isExpanded,
   showProblem,
   showFix,
+  autoFix,
+  fixLoading,
+  fixExplanation,
+  copied,
   onToggleExpand,
   onToggleProblem,
   onToggleFix,
+  onAutoFix,
+  onCopy,
 }: SuggestionHeaderProps) {
   const CatIcon  = CATEGORY_ICONS[suggestion.category] || Cpu;
   const sections = parseSections(suggestion.description);
 
   return (
     <div className="p-5 font-sans space-y-3">
+
+      {/* Badges */}
       <div className="flex flex-wrap items-center gap-2 text-[9px] font-mono uppercase tracking-wider">
         <span className="inline-flex items-center gap-1.5 text-accent bg-accent/5 px-2 py-0.5 rounded border border-accent/15 font-bold">
           <CatIcon className="h-3 w-3" />
@@ -65,15 +79,21 @@ export default function SuggestionHeader({
           {suggestion.filePath}
         </span>
       </div>
+
+      {/* Title */}
       <h3 className="text-base font-semibold text-foreground tracking-normal">
         {suggestion.title}
       </h3>
+
+      {/* Impact */}
       {sections['impact'] && (
         <p className="text-sm text-zinc-300 leading-relaxed max-w-3xl">
           <span className="font-semibold text-foreground">Impact:</span>{' '}
           {sections['impact']}
         </p>
       )}
+
+      {/* Show Fix toggle */}
       <button
         onClick={onToggleExpand}
         className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-wider px-3.5 py-2 border border-border bg-surface/30 rounded hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer select-none"
@@ -82,8 +102,12 @@ export default function SuggestionHeader({
           ? <><ChevronUp className="h-3 w-3" /><span>Hide Fix</span></>
           : <><ChevronDown className="h-3 w-3" /><span>Show Fix</span></>}
       </button>
+
+      {/* Expanded panel */}
       {isExpanded && (
         <div className="space-y-3 animate-slide-up">
+
+          {/* 3 toggle buttons */}
           <div className="flex flex-wrap gap-2 pt-1">
             <button
               onClick={onToggleProblem}
@@ -108,7 +132,25 @@ export default function SuggestionHeader({
               <Wrench className="h-3.5 w-3.5" />
               Refactor Fix
             </button>
+
+            <button
+              onClick={onAutoFix}
+              disabled={fixLoading || !!autoFix}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded border text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer disabled:cursor-not-allowed ${
+                autoFix
+                  ? 'border-violet-500/50 bg-violet-500/10 text-violet-400'
+                  : fixLoading
+                  ? 'border-violet-500/30 bg-violet-500/5 text-violet-400 opacity-80'
+                  : 'border-border bg-surface/30 text-muted hover:border-violet-500/40 hover:text-violet-400'
+              }`}
+            >
+              {fixLoading
+                ? <><Loader2 className="h-3.5 w-3.5 animate-spin" /> Generating...</>
+                : <><Sparkles className="h-3.5 w-3.5" /> Auto Fix</>}
+            </button>
           </div>
+
+          {/* Problem panel */}
           {showProblem && sections['problem'] && (
             <div className="rounded-lg border border-rose-500/20 bg-rose-500/5 p-4 animate-slide-up">
               <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-rose-400 mb-1.5">
@@ -118,12 +160,46 @@ export default function SuggestionHeader({
             </div>
           )}
 
+          {/* Fix text panel */}
           {showFix && sections['fix'] && (
             <div className="rounded-lg border border-accent/20 bg-accent/5 p-4 animate-slide-up">
               <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-accent mb-1.5">
                 🔧 Fix
               </p>
               <p className="text-sm text-zinc-200 leading-relaxed">{sections['fix']}</p>
+            </div>
+          )}
+
+          {/* Auto Fix result panel */}
+          {autoFix && (
+            <div className="rounded-lg border border-violet-500/20 bg-violet-500/5 p-4 space-y-3 animate-slide-up">
+              {/* Header */}
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-violet-400 flex items-center gap-1.5">
+                  <Sparkles className="h-3.5 w-3.5" /> AI Generated Fix
+                </p>
+                <button
+                  onClick={onCopy}
+                  className="inline-flex items-center gap-1.5 text-[9px] font-mono font-bold text-muted hover:text-foreground border border-border hover:border-zinc-500 px-2.5 py-1 rounded transition-all cursor-pointer"
+                >
+                  {copied
+                    ? <><Check className="h-3 w-3 text-accent" /> Copied!</>
+                    : <><ClipboardCopy className="h-3 w-3" /> Copy</>}
+                </button>
+              </div>
+
+              {/* Code block */}
+              <pre className="bg-background rounded-lg p-4 overflow-x-auto text-xs font-mono text-zinc-200 border border-border leading-relaxed">
+                <code>{autoFix}</code>
+              </pre>
+
+              {/* Explanation */}
+              {fixExplanation && (
+                <p className="text-xs text-zinc-300 leading-relaxed">
+                  <span className="font-semibold text-violet-400">What changed: </span>
+                  {fixExplanation}
+                </p>
+              )}
             </div>
           )}
 
