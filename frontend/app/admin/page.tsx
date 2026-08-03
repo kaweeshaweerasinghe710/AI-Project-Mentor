@@ -1,5 +1,6 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AlertOctagon, ArrowLeft, Loader2 } from 'lucide-react';
 import Link from 'next/link';
@@ -7,69 +8,14 @@ import AdminStatsGrid from '@/app/admin/components/AdminStatsGrid';
 import AdminRegistrationChart from '@/app/admin/components/AdminRegistrationChart';
 import AddAdminForm from './components/AddAdminForm';
 import ChangePasswordModal from '@/app/admin/components/ChangePasswordModal';
-
-interface RegistrationStat {
-  date: string;
-  count: number;
-}
+import AdminHeader from './components/AdminHeader';
+import { useAdminStats } from '../../hooks/useAdminStats';
 
 export default function AdminDashboard() {
   const router = useRouter();
-  const [stats, setStats] = useState<RegistrationStat[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [totalUsers, setTotalUsers] = useState(0);
+  const { stats, loading, error, totalUsers, dailyAvg, handleSignOut } = useAdminStats(router);
   const [showAddAdmin, setShowAddAdmin] = useState(false); 
   const [showChangePassword, setShowChangePassword] = useState(false);
-
-  const handleSignOut = () => {
-    localStorage.removeItem('user_token');
-    localStorage.removeItem('user_email');
-    localStorage.removeItem('user_role');
-    router.push('/login');
-  };
-
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const token = localStorage.getItem('user_token');
-        if (!token) {
-          router.push('/login');
-          return;
-        }
-        const response = await fetch('http://localhost:5000/api/admin/stats/registrations', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (response.status === 403) {
-          throw new Error('ACCESS_DENIED');
-        }
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch admin stats');
-        }
-
-        const data: RegistrationStat[] = await response.json();
-        setStats(data);
-        const sum = data.reduce((acc, curr) => acc + curr.count, 0);
-        setTotalUsers(sum);
-
-      } catch (err: any) {
-        console.error(err);
-        if (err.message === 'ACCESS_DENIED') {
-          setError('You have not access to this page. Please contact the system administrator.');
-        } else {
-          setError(err.message || 'cant fetch admin stats');
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStats();
-  }, [router]);
 
   if (loading) {
     return (
@@ -101,43 +47,13 @@ export default function AdminDashboard() {
     );
   }
 
-  const dailyAvg = stats.length > 0 ? (totalUsers / stats.length).toFixed(1) : '0';
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans text-xs flex flex-col">
-      {/* Admin Header */}
-      <header className="border-b border-border bg-surface/90 py-5">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-          <span className="text-xs font-bold tracking-widest text-foreground uppercase font-mono">
-            AI_PROJECT_MENTOR  <span className="text-accent">ADMIN_PANEL</span>
-          </span>
-          
-          <div className="flex items-center gap-3 font-mono">
-            {/* Change PW Button */}
-            <button 
-              onClick={() => setShowChangePassword(true)}
-              className="flex items-center gap-1.5 rounded border border-border bg-panel px-3.5 py-1.5 text-[10px] text-zinc-400 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
-            >
-              Change Password
-            </button>
-
-            {/* + Add Admin Button */}
-            <button 
-              onClick={() => setShowAddAdmin(true)}
-              className="flex items-center gap-1.5 rounded border border-accent/40 bg-accent/5 px-3.5 py-1.5 text-[10px] text-accent hover:bg-accent hover:text-background transition duration-200 cursor-pointer"
-            >
-              + Add Admin
-            </button>
-
-            <button 
-              onClick={handleSignOut}
-              className="flex items-center gap-1.5 rounded border border-border bg-panel px-3.5 py-1.5 text-[10px] text-zinc-400 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
-            >
-              Sign Out
-            </button>
-          </div>
-        </div>
-      </header>
+      <AdminHeader 
+        onAddAdmin={() => setShowAddAdmin(true)} 
+        onChangePassword={() => setShowChangePassword(true)} 
+        onSignOut={handleSignOut} 
+      />
 
       <main className="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-10 space-y-8">
         <div>

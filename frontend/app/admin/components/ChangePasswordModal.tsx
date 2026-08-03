@@ -1,7 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Key, Loader2, X } from 'lucide-react';
+import { Key, Loader2 } from 'lucide-react';
+import ModalWrapper from './ModalWrapper';
+import FormField from './FormField';
+import FormMessage from './FormMessage';
 
 interface ChangePasswordProps {
   onClose: () => void;
@@ -56,88 +59,26 @@ export default function ChangePasswordModal({ onClose }: ChangePasswordProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-fade-in font-sans">
-      <div className="relative max-w-sm w-full rounded-lg border border-border bg-panel p-6 shadow-2xl space-y-6">
+    <ModalWrapper 
+      onClose={onClose} 
+      icon={<Key className="h-4 w-4 text-accent" />} 
+      title="Change Password"
+    >
+      <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+        <FormField label="Current Password" type="password" value={currentPassword} onChange={setCurrentPassword} placeholder="••••••••" required />
+        <FormField label="New Password" type="password" value={newPassword} onChange={setNewPassword} placeholder="••••••••" required />
+        <FormField label="Confirm New Password" type="password" value={confirmPassword} onChange={setConfirmPassword} placeholder="••••••••" required />
         
-        {/* Close Button */}
-        <button 
-          onClick={onClose} 
-          className="absolute top-4 right-4 text-muted hover:text-accent transition duration-150 cursor-pointer"
+        <FormMessage message={message} />
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full flex justify-center items-center py-2 px-4 border border-accent bg-accent hover:bg-accent/90 text-background font-extrabold uppercase rounded cursor-pointer transition duration-150 text-xs"
         >
-          <X className="h-4 w-4" />
+          {loading ? <Loader2 className="h-3 w-3 animate-spin" /> : 'Update Password'}
         </button>
-
-        {/* Title */}
-        <div className="flex items-center gap-2 border-b border-border/65 pb-3">
-          <Key className="h-4 w-4 text-accent" />
-          <h3 className="text-xs font-bold text-foreground uppercase tracking-wider">
-            Change Password
-          </h3>
-        </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4 text-xs">
-          <div>
-            <label className="block text-[8px] font-bold text-muted uppercase tracking-widest mb-1.5 font-mono">
-              Current Password
-            </label>
-            <input
-              type="password"
-              required
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full px-3 py-2 bg-surface/50 border border-border text-zinc-300 rounded focus:outline-none focus:border-accent text-xs font-sans"
-            />
-          </div>
-
-          <div>
-            <label className="block text-[8px] font-bold text-muted uppercase tracking-widest mb-1.5 font-mono">
-              New Password
-            </label>
-            <input
-              type="password"
-              required
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full px-3 py-2 bg-surface/50 border border-border text-zinc-300 rounded focus:outline-none focus:border-accent text-xs font-sans"
-            />
-          </div>
-
-          <div>
-            <label className="block text-[8px] font-bold text-muted uppercase tracking-widest mb-1.5 font-mono">
-              Confirm New Password
-            </label>
-            <input
-              type="password"
-              required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full px-3 py-2 bg-surface/50 border border-border text-zinc-300 rounded focus:outline-none focus:border-accent text-xs font-sans"
-            />
-          </div>
-
-          {message && (
-            <div className={`p-2.5 rounded text-center font-bold tracking-wide border font-mono text-[10px] ${
-              message.type === 'success' 
-                ? 'bg-emerald-950/20 border-emerald-900/30 text-emerald-400' 
-                : 'bg-red-950/20 border-red-900/30 text-accent'
-            }`}>
-              {message.text}
-            </div>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full flex justify-center items-center py-2 px-4 border border-accent bg-accent hover:bg-accent/90 text-background font-extrabold uppercase rounded cursor-pointer transition duration-150 text-xs"
-          >
-            {loading ? <Loader2 className="h-3 w-3 animate-spin" /> : 'Update Password'}
-          </button>
-        </form>
-      </div>
-    </div>
+      </form>
+    </ModalWrapper>
   );
 }
