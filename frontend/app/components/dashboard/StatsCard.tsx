@@ -17,7 +17,7 @@ export default function StatsCard({ stats }: StatsCardProps) {
   const dominantLanguage = stats.languages[0]?.name || 'None';
 
   return (
-    <div className="lg:col-span-2 rounded-lg border border-border bg-panel/50 p-6 flex flex-col justify-between card-hover font-sans">
+    <div className="lg:col-span-2 rounded-lg border border-border bg-panel/50 p-6 flex flex-col justify-between font-sans">
       <div>
         <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-6">Codebase Scope</h3>
         

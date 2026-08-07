@@ -19,7 +19,7 @@ export default function GradeRing({ overallGrade, overallScore }: GradeRingProps
   };
 
   return (
-    <div className="lg:col-span-1 rounded-lg border border-[#243740] bg-[#18252C]/50 p-6 flex flex-col items-center justify-center text-center relative card-hover">
+    <div className="lg:col-span-1 rounded-lg border border-[#243740] bg-[#18252C]/50 p-6 flex flex-col items-center justify-center text-center relative">
       <h3 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6 font-mono">Overall Grade</h3>
       
       <div className="relative flex items-center justify-center mb-6">

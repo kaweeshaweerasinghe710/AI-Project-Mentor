@@ -13,7 +13,7 @@ export default function SummaryHighlights({ result, onNavigateToTab }: SummaryHi
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Structural Success Panel */}
-      <div className="rounded-lg border border-border bg-panel/50 p-6 card-hover">
+      <div className="rounded-lg border border-border bg-panel/50 p-6">
         <div className="flex items-center gap-2 border-b border-border/65 pb-3 mb-4">
           <CheckCircle className="h-4 w-4 text-emerald-500" />
           <h3 className="text-xs font-bold text-foreground uppercase tracking-wider">
@@ -33,7 +33,7 @@ export default function SummaryHighlights({ result, onNavigateToTab }: SummaryHi
       </div>
 
       {/* Identified Warnings Panel */}
-      <div className="rounded-lg border border-border bg-panel/50 p-6 flex flex-col justify-between card-hover">
+      <div className="rounded-lg border border-border bg-panel/50 p-6 flex flex-col justify-between">
         <div>
           <div className="flex items-center gap-2 border-b border-border/65 pb-3 mb-4">
             <AlertTriangle className="h-4 w-4 text-accent" />
