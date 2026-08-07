@@ -61,22 +61,21 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
         {isUser ? '[YOU]' : '[AI_ARCHITECT]'} &middot;{' '}
         <span className="text-zinc-600 font-normal">{message.timestamp}</span>
       </div>
-      <div className={`rounded border px-4 py-3 ${
+      <div className={`px-3 py-2 ${
         isUser
-          ? 'border-accent/30 bg-accent/5 text-zinc-200'
-          : 'border-border bg-panel/60 text-zinc-200'
+          ? 'border-l-2 border-accent/40 bg-accent/5 rounded-r'
+          : ''
       }`}>
         {isUser ? (
           <p className="text-sm font-sans text-zinc-200 leading-relaxed">{message.text}</p>
         ) : (
-    
           <div className="space-y-1.5">
             {renderFormattedText(message.text)}
           </div>
         )}
 
         {message.code && (
-          <div className="mt-3.5 rounded border border-border bg-surface overflow-hidden text-[10px] select-text">
+          <div className="mt-3 rounded border border-border bg-surface overflow-hidden text-[10px] select-text">
             <div className="bg-panel border-b border-border px-3 py-1.5 text-zinc-500 flex justify-between select-none">
               <span>SUGGESTED_FIX</span>
             </div>

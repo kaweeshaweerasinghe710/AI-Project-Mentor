@@ -24,7 +24,7 @@ export default function MentorChat({ result }: MentorChatProps) {
   }, [messages, isTyping]);
 
   return (
-    <div className="rounded-lg border border-border bg-panel/40 flex flex-col h-[550px] font-sans text-sm card-hover">
+    <div className="rounded-lg border border-border bg-panel/40 flex flex-col h-[550px] font-sans text-sm">
       {/* Chat Header */}
       <ChatHeader />
 

@@ -58,14 +58,6 @@ body {
 }
 
 
-.card-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.card-hover:hover {
-  transform: translateY(-1px);
-  border-color: #3f3f46; 
-  background-color: #1c1c20;
-}
 
 .btn-hover {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
