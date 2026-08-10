@@ -26,12 +26,13 @@ async function analyzeCodebase(repoName, files) {
        - If there are no clear security vulnerabilities (e.g. no exposed passwords or tokens, no SQL injection), the security score MUST be 90 or above.
        - If connection pools or replica limits are not explicitly configured but not required for this type of codebase, do not lower the loadBalance score below 80.
        - If namespaces/structures are standard, structure score must be 85 or above.
-    
+    5. SIMPLICITY & TONE: Keep suggestions and questions at a beginner to intermediate level. Focus on practical, easy-to-understand improvements (like clean code, basic error handling, standard practices) rather than heavy, complex enterprise-level architecture.
+
     Provide the following output:
     1. Overall project quality score (from 0 to 100).
     2. Primary languages, libraries, and frameworks detected.
-    3. List of code quality, security, and performance suggestions.
-    4. A set of 10 code review questions based on this codebase (not multiple choice) that test the developer's understanding of their own code design, along with reference model answers.
+    3. List of practical, simple code quality, security, and performance suggestions.
+    4. A set of 10 beginner-friendly code review questions based on this codebase (not multiple choice) that help the developer learn standard practices, along with reference model answers.
 
     Here are the source files:
     ${filesContext}
@@ -43,18 +44,18 @@ async function analyzeCodebase(repoName, files) {
       "suggestions": [
         {
           "category": "<structure | security | loadBalance | performance>",
-          "title": "<short descriptive title of the issue>",
-          "description": "<Write the description in exactly 3 clearly separated lines using the \\n newline character between each line. Line 1 must start with 'Problem:' and explain the issue. Line 2 must start with 'Impact:' and explain why it matters. Line 3 must start with 'Fix:' and explain the recommended solution. Do NOT write a single continuous paragraph.>",
+          "title": "<short descriptive title of the issue - keep it simple>",
+          "description": "<Write the description in exactly 3 clearly separated lines using the \\n newline character between each line. Line 1 must start with 'Problem:' and explain the issue simply. Line 2 must start with 'Impact:' and explain why it matters in practical terms. Line 3 must start with 'Fix:' and give an easy-to-follow recommended solution. Do NOT write a single continuous paragraph.>",
           "filePath": "<exact path of the file containing the issue>",
           "severity": "<low | medium | high>"
         }
       ],
       "reviewQuestions": [
         {
-          "question": "<a code review question asking the developer to evaluate their design or refactor a specific part of code>",
+          "question": "<a simple, practical code review question asking the developer about a basic concept, logic flow, or simple refactor in their code>",
           "codeContext": "<optional code snippet from the files being referenced, or null>",
-          "guidance": "<instructions on what the developer should inspect, e.g., 'Look at the function in lines 12-24 of app.js'>",
-          "modelAnswer": "<detailed explanation of what a correct/best practice answer would be>"
+          "guidance": "<friendly instructions on what the developer should inspect, e.g., 'Look at the function in lines 12-24 of app.js'>",
+          "modelAnswer": "<simple, beginner-friendly explanation of what a correct/best practice answer would be>"
         }
       ]
     }
