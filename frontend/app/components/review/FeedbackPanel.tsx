@@ -14,15 +14,13 @@ function FeedbackLine({ line }: { line: string }) {
     const colonIdx = line.indexOf(':');
     const rest = colonIdx !== -1 ? line.substring(colonIdx + 1).trim() : line.replace(emoji, '').trim();
     if (emoji === '🟢') {
-      return (
-        <div className={`rounded-lg border p-4 ${style.border} ${style.bg}`}>
+        <div className={`border-l-2 pl-4 py-1 ${style.border}`}>
           <div className={`flex items-center gap-2 mb-2 text-[11px] font-mono font-bold uppercase tracking-wider ${style.color}`}>
             <span className="text-lg leading-none">{emoji}</span>
             <span>{style.label}</span>
           </div>
           <p className="text-sm text-zinc-200 leading-relaxed">{rest}</p>
         </div>
-      );
     }
     return (
       <div className="text-sm text-zinc-200 leading-relaxed">
@@ -50,7 +48,7 @@ interface FeedbackPanelProps {
 
 export default function FeedbackPanel({ feedback }: FeedbackPanelProps) {
   return (
-    <div className="rounded-lg border border-accent/25 bg-accent/5 p-6 space-y-3 animate-slide-up">
+    <div className="border-t border-accent/20 pt-6 mt-6 space-y-3 animate-slide-up">
       <div className="flex items-center gap-2 text-[10px] font-bold font-mono uppercase tracking-widest text-accent mb-10">
         <span>Senior Architect Feedback on Your Answer</span>
       </div>

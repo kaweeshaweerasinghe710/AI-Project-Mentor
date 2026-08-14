@@ -34,8 +34,8 @@ export default function ReviewQuestions({ questions }: ReviewQuestionsProps) {
 
   if (questions.length === 0) {
     return (
-      <div className="rounded-lg border border-border bg-panel/40 p-12 text-center text-muted font-mono text-[10px]">
-        {'// No code review questions generated for this codebase.'}
+      <div className="py-12 text-center text-muted font-mono text-[10px]">
+        {"// No review questions generated for this project."}
       </div>
     );
   }

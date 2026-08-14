@@ -27,16 +27,14 @@ export default function ImprovementsList({ suggestions }: ImprovementsListProps)
 
   return (
     <div className="space-y-6 animate-fade-in font-sans">
-      {/* Category Tabs Filter */}
       <CategoryFilter
         categories={categories}
         activeCategory={activeCategory}
         onSelectCategory={setActiveCategory}
       />
 
-      {/* Suggestion Cards */}
       {filteredSuggestions.length === 0 ? (
-        <div className="rounded-lg border border-border bg-panel/40 p-12 text-center text-muted font-mono text-[10px]">
+        <div className="py-12 text-center text-muted font-mono text-[10px]">
           {"// No suggestions identified for this category."}
         </div>
       ) : (
