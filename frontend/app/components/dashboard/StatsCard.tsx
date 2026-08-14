@@ -22,8 +22,8 @@ export default function StatsCard({ stats }: StatsCardProps) {
         <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-6">Codebase Scope</h3>
         
         <div className="grid grid-cols-3 gap-4 mb-8 text-xs">
-          {/* Total Files */}
-          <div className="rounded-lg border border-border bg-surface/50 p-4 hover:border-accent transition duration-200">
+         
+          <div className="flex flex-col border-l border-border/50 pl-4 first:border-l-0 first:pl-0">
             <div className="flex items-center gap-1.5 text-muted mb-2">
               <FileText className="h-3.5 w-3.5" />
               <span className="font-bold uppercase tracking-wider">Total Files</span>
@@ -31,8 +31,8 @@ export default function StatsCard({ stats }: StatsCardProps) {
             <div className="text-lg font-extrabold text-foreground font-mono">{stats.files}</div>
           </div>
 
-          {/* Lines of Code */}
-          <div className="rounded-lg border border-border bg-surface/50 p-4 hover:border-accent transition duration-200">
+        
+          <div className="flex flex-col border-l border-border/50 pl-4">
             <div className="flex items-center gap-1.5 text-muted mb-2">
               <Code2 className="h-3.5 w-3.5" />
               <span className="font-bold uppercase tracking-wider">Lines Of Code</span>
@@ -40,8 +40,8 @@ export default function StatsCard({ stats }: StatsCardProps) {
             <div className="text-lg font-extrabold text-foreground font-mono">{stats.lines.toLocaleString()}</div>
           </div>
 
-          {/* Complexity */}
-          <div className="rounded-lg border border-border bg-surface/50 p-4 hover:border-accent transition duration-200">
+        
+          <div className="flex flex-col border-l border-border/50 pl-4">
             <div className="flex items-center gap-1.5 text-muted mb-2">
               <Cpu className="h-3.5 w-3.5" />
               <span className="font-bold uppercase tracking-wider">Complexity</span>
@@ -50,8 +50,6 @@ export default function StatsCard({ stats }: StatsCardProps) {
           </div>
         </div>
       </div>
-
-      {/* Languages Progress bar */}
       <div className="text-xs">
         <div className="flex justify-between items-center mb-3">
           <span className="font-bold text-zinc-400 uppercase tracking-wider">Language Volume</span>

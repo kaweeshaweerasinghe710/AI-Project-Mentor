@@ -14,7 +14,7 @@ export default function JourneyTrack({ steps, selectedIdx, doneCount, onSelectSt
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="relative rounded-xl border border-border bg-panel/30 overflow-hidden">
+    <div className="relative overflow-hidden pt-4 pb-2">
       <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5 pointer-events-none" />
 
       <div ref={scrollRef} className="overflow-x-auto scrollbar-thin py-10 px-6">
