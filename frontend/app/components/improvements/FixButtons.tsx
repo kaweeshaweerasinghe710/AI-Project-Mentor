@@ -26,8 +26,8 @@ export default function FixButtons({
         onClick={onToggleProblem}
         className={`inline-flex items-center gap-2 px-4 py-2 rounded border text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
           showProblem
-            ? 'border-rose-500/50 bg-rose-500/10 text-rose-400'
-            : 'border-border bg-surface/30 text-muted hover:border-rose-500/40 hover:text-rose-400'
+            ? 'border-accent/50 bg-accent/10 text-accent'
+            : 'border-border bg-surface/30 text-muted hover:border-accent/40 hover:text-accent'
         }`}
       >
         <Bug className="h-3.5 w-3.5" />
@@ -51,10 +51,10 @@ export default function FixButtons({
         disabled={fixLoading || !!autoFix}
         className={`inline-flex items-center gap-2 px-4 py-2 rounded border text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer disabled:cursor-not-allowed ${
           autoFix
-            ? 'border-violet-500/50 bg-violet-500/10 text-violet-400'
+            ? 'border-accent/50 bg-accent/10 text-accent'
             : fixLoading
-            ? 'border-violet-500/30 bg-violet-500/5 text-violet-400 opacity-80'
-            : 'border-border bg-surface/30 text-muted hover:border-violet-500/40 hover:text-violet-400'
+            ? 'border-accent/30 bg-accent/5 text-accent opacity-80'
+            : 'border-border bg-surface/30 text-muted hover:border-accent/40 hover:text-accent'
         }`}
       >
         {fixLoading

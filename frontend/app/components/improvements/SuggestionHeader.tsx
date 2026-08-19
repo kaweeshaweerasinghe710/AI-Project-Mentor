@@ -83,25 +83,25 @@ export default function SuggestionHeader({
             onToggleFix={onToggleFix}
             onAutoFix={onAutoFix}
           />
-          <div className="flex flex-col md:flex-row gap-6 mt-4">
+          <div className="space-y-4 mt-4">
             {showProblem && sections['problem'] && (
-              <div className="flex-1 animate-slide-up">
-                <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-rose-400 mb-1.5">
-                  🐛 Problem
+              <div className="animate-slide-up">
+                <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-accent mb-1.5 flex items-center gap-1.5">
+                  <span className="text-rose-400">🐛</span> Problem
                 </p>
                 <p className="text-sm text-zinc-200 leading-relaxed">{sections['problem']}</p>
               </div>
             )}
             {showFix && sections['fix'] && (
-              <div className="flex-1 animate-slide-up">
-                <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-accent mb-1.5">
-                  🔧 Fix
+              <div className="animate-slide-up">
+                <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-accent mb-1.5 flex items-center gap-1.5">
+                  <span className="text-accent">🔧</span> Fix
                 </p>
                 <p className="text-sm text-zinc-200 leading-relaxed">{sections['fix']}</p>
               </div>
             )}
             {autoFix && (
-              <div className="flex-1 animate-slide-up">
+              <div className="animate-slide-up">
                 <AutoFixPanel
                   autoFix={autoFix}
                   fixExplanation={fixExplanation}

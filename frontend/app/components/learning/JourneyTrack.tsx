@@ -52,17 +52,17 @@ export default function JourneyTrack({ steps, selectedIdx, doneCount, onSelectSt
                     onClick={() => onSelectStep(isSelected ? null : idx)}
                     className={`relative h-12 w-12 rounded-full border-2 flex items-center justify-center text-sm font-bold font-mono z-10 transition-all duration-300 cursor-pointer ${
                       step.isCompleted
-                        ? `bg-accent border-accent text-background ${meta.glow}`
+                        ? `bg-accent border-accent text-background`
                         : isSelected
-                        ? 'bg-panel border-accent text-accent shadow-[0_0_16px_rgba(62,207,142,0.25)]'
-                        : 'bg-panel border-zinc-600 text-zinc-400 hover:border-zinc-400 hover:text-zinc-200 hover:shadow-lg'
+                        ? 'bg-panel border-accent text-accent'
+                        : 'bg-panel border-zinc-600 text-zinc-400 hover:border-zinc-400 hover:text-zinc-200'
                     }`}
                   >
                     {step.isCompleted
                       ? <CheckCircle2 className="h-5 w-5" />
                       : <span>{idx + 1}</span>}
                     {isSelected && !step.isCompleted && (
-                      <span className="absolute inset-0 rounded-full border-2 border-accent animate-ping opacity-20" />
+                      <span className="absolute inset-0 rounded-full border-2 border-accent opacity-20" />
                     )}
                   </button>
                   <div className={`w-[1px] h-3 ${step.isCompleted ? 'bg-accent/40' : 'bg-border'}`} />
