@@ -9,7 +9,7 @@ import AdminRegistrationChart from '@/app/admin/components/AdminRegistrationChar
 import AddAdminForm from './components/AddAdminForm';
 import ChangePasswordModal from '@/app/admin/components/ChangePasswordModal';
 import AdminHeader from './components/AdminHeader';
-import { useAdminStats } from '../../hooks/useAdminStats';
+import { useAdminStats } from '../hooks/useAdminStats';
 
 export default function AdminDashboard() {
   const router = useRouter();

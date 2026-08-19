@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { LearningStep, Badge } from '../../types';
+import { LearningStep, Badge } from '../types';
 
 export function useLearningPath() {
   const [steps, setSteps] = useState<LearningStep[]>([]);
