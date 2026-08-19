@@ -28,17 +28,6 @@ export default function ReviewActions({
         {isReviewed ? 'Mark as Unreviewed' : 'Mark as Reviewed'}
       </button>
 
-      <button
-        onClick={onToggleAnswer}
-        className={`inline-flex items-center gap-2 px-5 py-2.5 border rounded-lg text-xs font-mono font-bold uppercase tracking-wider transition duration-150 cursor-pointer ${
-          showAnswer
-            ? 'border-accent/40 bg-accent/10 text-accent'
-            : 'border-border bg-panel/30 text-muted hover:text-zinc-200 hover:border-zinc-500'
-        }`}
-      >
-        <HelpCircle className="h-4 w-4" />
-        {showAnswer ? 'Hide Reference Answer' : 'See Reference Answer'}
-      </button>
     </div>
   );
 }

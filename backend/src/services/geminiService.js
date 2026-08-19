@@ -15,7 +15,7 @@ async function analyzeCodebase(repoName, files) {
     .join('\n');
 
   const prompt = `
-    CRITICAL FORMATTING RULE: DO NOT USE single quotes ('') or double quotes ("") unnecessarily in your generated text. Do NOT wrap variables or words in quotes.
+    CRITICAL FORMATTING RULE: DO NOT use single quotes ('') to emphasize words or variables in your text responses. Do not wrap words in extra quotes.
 
     You are an expert senior software engineer and security auditor.
     Analyze the following codebase of the repository named "${repoName}".

@@ -27,7 +27,7 @@ export default function FixButtons({
         className={`inline-flex items-center gap-2 px-4 py-2 rounded border text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
           showProblem
             ? 'border-accent/50 bg-accent/10 text-accent'
-            : 'border-border bg-surface/30 text-muted hover:border-accent/40 hover:text-accent'
+            : 'border-border bg-surface/30 text-muted'
         }`}
       >
         <Bug className="h-3.5 w-3.5" />
@@ -39,7 +39,7 @@ export default function FixButtons({
         className={`inline-flex items-center gap-2 px-4 py-2 rounded border text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
           showFix
             ? 'border-accent/50 bg-accent/10 text-accent'
-            : 'border-border bg-surface/30 text-muted hover:border-accent/40 hover:text-accent'
+            : 'border-border bg-surface/30 text-muted'
         }`}
       >
         <Wrench className="h-3.5 w-3.5" />
@@ -54,7 +54,7 @@ export default function FixButtons({
             ? 'border-accent/50 bg-accent/10 text-accent'
             : fixLoading
             ? 'border-accent/30 bg-accent/5 text-accent opacity-80'
-            : 'border-border bg-surface/30 text-muted hover:border-accent/40 hover:text-accent'
+            : 'border-border bg-surface/30 text-muted'
         }`}
       >
         {fixLoading
