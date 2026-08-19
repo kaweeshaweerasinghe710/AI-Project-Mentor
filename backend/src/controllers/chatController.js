@@ -31,6 +31,8 @@ exports.sendMessage = async (req, res) => {
 
     
     const systemInstruction = `
+    CRITICAL FORMATTING RULE: DO NOT USE single quotes ('') or double quotes ("") unnecessarily in your generated text. Do NOT wrap variables or words in quotes.
+
       You are an expert senior software architect and AI coding mentor.
       You have previously audited the repository named "${project.repoName}" (${project.repoUrl}).
       Here is the audit summary:

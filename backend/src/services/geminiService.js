@@ -15,6 +15,8 @@ async function analyzeCodebase(repoName, files) {
     .join('\n');
 
   const prompt = `
+    CRITICAL FORMATTING RULE: DO NOT USE single quotes ('') or double quotes ("") unnecessarily in your generated text. Do NOT wrap variables or words in quotes.
+
     You are an expert senior software engineer and security auditor.
     Analyze the following codebase of the repository named "${repoName}".
 

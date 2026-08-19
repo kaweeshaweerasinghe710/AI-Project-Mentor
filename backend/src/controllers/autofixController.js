@@ -13,6 +13,10 @@ exports.generateFix = async (req, res) => {
   });
 
   const prompt = `
+    CRITICAL FORMATTING RULE: DO NOT USE single quotes ('') or double quotes ("") unnecessarily in your generated text. Do NOT wrap variables or words in quotes.
+ 
+    CRITICAL FORMATTING RULE: DO NOT USE single quotes ('') or double quotes ("") unnecessarily in your generated text. Do NOT wrap variables or words in quotes.
+
     You are a senior software engineer. Fix the following ${language} code.
 
     ISSUE: ${title}

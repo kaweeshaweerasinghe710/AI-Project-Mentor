@@ -18,6 +18,10 @@ exports.generateLearningPath = async (userId, suggestions, techStack) => {
   });
 
   const prompt = `
+    CRITICAL FORMATTING RULE: DO NOT USE single quotes ('') or double quotes ("") unnecessarily in your generated text. Do NOT wrap variables or words in quotes.
+ 
+    CRITICAL FORMATTING RULE: DO NOT USE single quotes ('') or double quotes ("") unnecessarily in your generated text. Do NOT wrap variables or words in quotes.
+
     You are an expert software engineering mentor.
     A developer's codebase has been analyzed. Based on the issues found, generate a personalized learning path.
 
@@ -122,3 +126,4 @@ exports.completeStep = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+

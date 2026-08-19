@@ -15,6 +15,10 @@ exports.evaluateAnswer = async (req, res) => {
     });
 
     const prompt = `
+    CRITICAL FORMATTING RULE: DO NOT USE single quotes ('') or double quotes ("") unnecessarily in your generated text. Do NOT wrap variables or words in quotes.
+ 
+    CRITICAL FORMATTING RULE: DO NOT USE single quotes ('') or double quotes ("") unnecessarily in your generated text. Do NOT wrap variables or words in quotes.
+
       You are a senior software architect reviewing a developer's self-assessment answer.
 
       CODE REVIEW QUESTION:
@@ -51,3 +55,4 @@ exports.evaluateAnswer = async (req, res) => {
     res.status(500).json({ message: 'AI evaluation failed: ' + error.message });
   }
 };
+
