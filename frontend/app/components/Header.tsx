@@ -16,19 +16,22 @@ export default function Header({ repoName, onReset, userEmail, onSignOut }: Head
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md font-sans">
       <div className="mx-auto flex max-w-7xl h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
 
-        {repoName && (
-          <div className="hidden md:flex items-center gap-2.5 rounded-lg border border-border bg-panel/60 px-3.5 py-1.5 text-xs font-mono text-zinc-400">
-            <GithubIcon className="h-3.5 w-3.5 text-muted" />
-            <span className="text-muted">Repo:</span>
-            <span className="text-zinc-300 font-semibold">{repoName}</span>
-          </div>
-        )}
-        <div className="flex items-center gap-3 text-xs">
+        <div className="flex items-center gap-4">
+          {repoName && (
+            <div className="hidden md:flex items-center gap-2.5 rounded-lg border border-border bg-panel/60 px-3.5 py-1.5 text-xs font-mono text-zinc-400">
+              <GithubIcon className="h-3.5 w-3.5 text-muted" />
+              <span className="text-muted">Repo:</span>
+              <span className="text-zinc-300 font-semibold">{repoName}</span>
+            </div>
+          )}
           {userEmail && (
-            <span className="hidden sm:inline font-bold text-muted font-mono bg-panel border border-border px-2.5 py-1.5 rounded-lg uppercase">
+            <span className="hidden sm:inline font-bold text-muted font-mono bg-panel border border-border px-2.5 py-1.5 rounded-lg text-xs uppercase">
               {userEmail.split('@')[0]}
             </span>
           )}
+        </div>
+
+        <div className="flex items-center gap-3 text-xs">
           {repoName && (
             <button
               onClick={onReset}
