@@ -25,7 +25,7 @@ export default function SummaryHighlights({ result, onNavigateToTab }: SummaryHi
             <span className="text-[#859F3D] font-bold shrink-0">&gt;</span>
             <span>Workspace packages are correctly declared and compiled with strict parameters.</span>
           </li>
-          <li className="flex items-start gap-2 text-[11px] text-zinc-550 leading-relaxed">
+          <li className="flex items-start gap-2 text-[11px] text-slate-550 leading-relaxed">
             <span className="text-[#859F3D] font-bold shrink-0">&gt;</span>
             <span>Root directories respect clear separation of logic boundaries and configs.</span>
           </li>
@@ -46,8 +46,8 @@ export default function SummaryHighlights({ result, onNavigateToTab }: SummaryHi
               <li key={idx} className="flex items-start gap-2 text-xs text-muted leading-relaxed">
                 <span className="text-accent font-bold shrink-0">&gt;</span>
                 <div>
-                  <span className="text-zinc-400 font-semibold">{sugg.title}</span>
-                  <span className="text-zinc-655 block text-[9px] mt-0.5">{sugg.filePath}</span>
+                  <span className="text-slate-400 font-semibold">{sugg.title}</span>
+                  <span className="text-slate-655 block text-[9px] mt-0.5">{sugg.filePath}</span>
                 </div>
               </li>
             ))}
@@ -55,7 +55,7 @@ export default function SummaryHighlights({ result, onNavigateToTab }: SummaryHi
         </div>
         <button
           onClick={() => onNavigateToTab('suggestions')}
-          className="mt-6 w-full text-center py-2 bg-panel border border-border hover:border-accent hover:text-accent text-[10px] text-zinc-400 font-bold rounded transition duration-200 cursor-pointer uppercase tracking-wider"
+          className="mt-6 w-full text-center py-2 bg-panel border border-border hover:border-accent hover:text-accent text-[10px] text-slate-400 font-bold rounded transition duration-200 cursor-pointer uppercase tracking-wider"
         >
           Review all {result.suggestions.length} suggestions
         </button>

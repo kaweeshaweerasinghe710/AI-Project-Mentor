@@ -21,7 +21,7 @@ export default function AdminRegistrationChart({ stats }: ChartProps) {
       </h3>
 
       {stats.length === 0 ? (
-        <div className="h-64 border border-dashed border-border rounded flex items-center justify-center text-zinc-650 font-mono text-xs">
+        <div className="h-64 border border-dashed border-border rounded flex items-center justify-center text-slate-650 font-mono text-xs">
           // No user data available in system database.
         </div>
       ) : (
@@ -56,7 +56,7 @@ export default function AdminRegistrationChart({ stats }: ChartProps) {
           <div className="flex items-start gap-2 md:gap-4 pt-0 pb-2 overflow-x-auto scrollbar-thin">
             {stats.map((day, idx) => (
               <div key={idx} className="w-12 shrink-0 flex flex-col items-center">
-                <div className="text-[8px] font-bold text-zinc-550 text-center font-mono">
+                <div className="text-[8px] font-bold text-slate-550 text-center font-mono">
                   {day.date.split('-').slice(1).join('/')}
                 </div>
               </div>

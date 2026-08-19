@@ -20,7 +20,7 @@ export default function GradeRing({ overallGrade, overallScore }: GradeRingProps
 
   return (
     <div className="lg:col-span-1 rounded-lg border border-[#243740] bg-[#18252C]/50 p-6 flex flex-col items-center justify-center text-center relative">
-      <h3 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6 font-mono">Overall Grade</h3>
+      <h3 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6 font-mono">Overall Grade</h3>
       
       <div className="relative flex items-center justify-center mb-6">
         <svg className="w-36 h-36 transform -rotate-90">
@@ -44,11 +44,11 @@ export default function GradeRing({ overallGrade, overallScore }: GradeRingProps
         </svg>
         <div className="absolute flex flex-col items-center justify-center font-mono">
           <span className="text-2xl font-extrabold text-[#ECE9E4]">{overallGrade}</span>
-          <span className="text-[9px] font-bold text-zinc-500 mt-0.5">{overallScore}% SCORE</span>
+          <span className="text-[9px] font-bold text-slate-500 mt-0.5">{overallScore}% SCORE</span>
         </div>
       </div>
 
-      <p className="text-[11px] text-zinc-550 max-w-[200px] leading-relaxed font-mono">
+      <p className="text-[11px] text-slate-550 max-w-[200px] leading-relaxed font-mono">
         Complies with {getComplianceText(overallScore)} software principles.
       </p>
     </div>

@@ -92,7 +92,7 @@ export default function Home() {
                     className={`flex items-center gap-2 py-3 px-1.5 border-b-2 text-xs font-mono uppercase tracking-wider transition cursor-pointer select-none ${
                       isSelected
                         ? 'border-accent text-accent font-bold'
-                        : 'border-transparent text-zinc-500 hover:text-zinc-400'
+                        : 'border-transparent text-slate-500 hover:text-slate-400'
                     }`}
                   >
                     <TabIcon className="h-4 w-4 shrink-0" />

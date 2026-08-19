@@ -18,10 +18,10 @@ export default function Header({ repoName, onReset, userEmail, onSignOut }: Head
 
         <div className="flex items-center gap-4">
           {repoName && (
-            <div className="hidden md:flex items-center gap-2.5 rounded-lg border border-border bg-panel/60 px-3.5 py-1.5 text-xs font-mono text-zinc-400">
+            <div className="hidden md:flex items-center gap-2.5 rounded-lg border border-border bg-panel/60 px-3.5 py-1.5 text-xs font-mono text-slate-400">
               <GithubIcon className="h-3.5 w-3.5 text-muted" />
               <span className="text-muted">Repo:</span>
-              <span className="text-zinc-300 font-semibold">{repoName}</span>
+              <span className="text-slate-300 font-semibold">{repoName}</span>
             </div>
           )}
           {userEmail && (
@@ -35,7 +35,7 @@ export default function Header({ repoName, onReset, userEmail, onSignOut }: Head
           {repoName && (
             <button
               onClick={onReset}
-              className="flex items-center gap-1.5 rounded-lg border border-border bg-panel px-3.5 py-1.5 font-mono uppercase tracking-wider font-semibold text-zinc-400 hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer"
+              className="flex items-center gap-1.5 rounded-lg border border-border bg-panel px-3.5 py-1.5 font-mono uppercase tracking-wider font-semibold text-slate-400 hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer"
             >
               <RefreshCw className="h-3 w-3" />
               <span>Reset Scan</span>
@@ -44,7 +44,7 @@ export default function Header({ repoName, onReset, userEmail, onSignOut }: Head
           {userEmail && (
             <button
               onClick={onSignOut}
-              className="flex items-center gap-1.5 rounded-lg border border-border bg-panel px-3.5 py-1.5 font-mono uppercase tracking-wider font-semibold text-zinc-400 hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer"
+              className="flex items-center gap-1.5 rounded-lg border border-border bg-panel px-3.5 py-1.5 font-mono uppercase tracking-wider font-semibold text-slate-400 hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer"
             >
               Sign Out
             </button>
@@ -53,7 +53,7 @@ export default function Header({ repoName, onReset, userEmail, onSignOut }: Head
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center rounded-lg h-9 w-9 border border-border bg-panel text-zinc-400 hover:border-accent hover:text-accent hover:scale-105 transition-all duration-200"
+            className="flex items-center justify-center rounded-lg h-9 w-9 border border-border bg-panel text-slate-400 hover:border-accent hover:text-accent hover:scale-105 transition-all duration-200"
           >
             <GithubIcon className="h-4 w-4" />
           </a>

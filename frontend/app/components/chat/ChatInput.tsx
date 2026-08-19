@@ -19,7 +19,7 @@ export default function ChatInput({ onSubmit, isTyping }: ChatInputProps) {
   };
 
   return (
-    <div className="p-4 bg-zinc-950 border-t border-border shrink-0 font-sans">
+    <div className="p-4 bg-slate-950 border-t border-border shrink-0 font-sans">
       <form
         onSubmit={handleSubmit}
         className="flex gap-2.5 items-center bg-surface/30 border border-border rounded p-1.5 pl-3 focus-within:border-accent transition"
@@ -30,7 +30,7 @@ export default function ChatInput({ onSubmit, isTyping }: ChatInputProps) {
           onChange={(e) => setInputText(e.target.value)}
           disabled={isTyping}
           placeholder="Ask AI Architect... (e.g., Explain Postgres connection pool issues)"
-          className="flex-1 bg-transparent border-0 text-foreground placeholder-zinc-700 focus:outline-none focus:ring-0 text-xs py-1"
+          className="flex-1 bg-transparent border-0 text-foreground placeholder-slate-700 focus:outline-none focus:ring-0 text-xs py-1"
         />
         <button
           type="submit"

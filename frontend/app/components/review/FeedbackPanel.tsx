@@ -19,11 +19,11 @@ function FeedbackLine({ line }: { line: string }) {
             <span className="text-lg leading-none">{emoji}</span>
             <span>{style.label}</span>
           </div>
-          <p className="text-sm text-zinc-200 leading-relaxed">{rest}</p>
+          <p className="text-sm text-slate-200 leading-relaxed">{rest}</p>
         </div>
     }
     return (
-      <div className="text-sm text-zinc-200 leading-relaxed">
+      <div className="text-sm text-slate-200 leading-relaxed">
         <div className={`flex items-center gap-2 mb-1 text-[11px] font-mono font-bold uppercase tracking-wider ${style.color}`}>
           <span className="text-lg leading-none">{emoji}</span>
           <span>{style.label}</span>
@@ -33,9 +33,9 @@ function FeedbackLine({ line }: { line: string }) {
     );
   }
   const colonIdx = line.indexOf(':');
-  if (colonIdx === -1) return <p className="text-sm text-zinc-200 leading-relaxed">{line}</p>;
+  if (colonIdx === -1) return <p className="text-sm text-slate-200 leading-relaxed">{line}</p>;
   return (
-    <p className="text-sm text-zinc-200 leading-relaxed">
+    <p className="text-sm text-slate-200 leading-relaxed">
       <span className="font-bold text-foreground">{line.substring(0, colonIdx + 1)}</span>
       {line.substring(colonIdx + 1)}
     </p>

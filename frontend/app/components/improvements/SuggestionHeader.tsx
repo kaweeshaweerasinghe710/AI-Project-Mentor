@@ -58,7 +58,7 @@ export default function SuggestionHeader({
         {suggestion.title}
       </h3>
       {sections['impact'] && (
-        <p className="text-sm text-zinc-300 leading-relaxed max-w-3xl">
+        <p className="text-sm text-slate-300 leading-relaxed max-w-3xl">
           <span className="font-semibold text-foreground">Impact:</span>{' '}
           {sections['impact']}
         </p>
@@ -89,7 +89,7 @@ export default function SuggestionHeader({
                 <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-accent mb-1.5 flex items-center gap-1.5">
                   <span className="text-rose-400">🐛</span> Problem
                 </p>
-                <p className="text-sm text-zinc-200 leading-relaxed">{sections['problem']}</p>
+                <p className="text-sm text-slate-200 leading-relaxed">{sections['problem']}</p>
               </div>
             )}
             {showFix && sections['fix'] && (
@@ -97,7 +97,7 @@ export default function SuggestionHeader({
                 <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-accent mb-1.5 flex items-center gap-1.5">
                   <span className="text-accent">🔧</span> Fix
                 </p>
-                <p className="text-sm text-zinc-200 leading-relaxed">{sections['fix']}</p>
+                <p className="text-sm text-slate-200 leading-relaxed">{sections['fix']}</p>
               </div>
             )}
             {autoFix && (

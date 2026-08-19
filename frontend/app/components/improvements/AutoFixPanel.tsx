@@ -18,18 +18,18 @@ export default function AutoFixPanel({ autoFix, fixExplanation, copied, onCopy }
         </p>
         <button
           onClick={onCopy}
-          className="inline-flex items-center gap-1.5 text-[9px] font-mono font-bold text-muted hover:text-foreground border border-border hover:border-zinc-500 px-2.5 py-1 rounded transition-all cursor-pointer"
+          className="inline-flex items-center gap-1.5 text-[9px] font-mono font-bold text-muted hover:text-foreground border border-border hover:border-slate-500 px-2.5 py-1 rounded transition-all cursor-pointer"
         >
           {copied
             ? <><Check className="h-3 w-3 text-accent" /> Copied!</>
             : <><ClipboardCopy className="h-3 w-3" /> Copy</>}
         </button>
       </div>
-      <pre className="bg-background rounded-lg p-4 overflow-x-auto text-xs font-mono text-zinc-200 border border-border leading-relaxed">
+      <pre className="bg-background rounded-lg p-4 overflow-x-auto text-xs font-mono text-slate-200 border border-border leading-relaxed">
         <code>{autoFix}</code>
       </pre>
       {fixExplanation && (
-        <p className="text-xs text-zinc-300 leading-relaxed">
+        <p className="text-xs text-slate-300 leading-relaxed">
           <span className="font-semibold text-violet-400">What changed: </span>
           {fixExplanation}
         </p>

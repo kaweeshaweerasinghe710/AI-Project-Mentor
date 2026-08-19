@@ -18,7 +18,7 @@ export default function ComparisonChart({ scores }: ComparisonChartProps) {
 
   return (
     <div className="rounded-lg border border-[#243740] bg-[#18252C]/50 p-6">
-      <h3 className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-6 font-mono">
+      <h3 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-6 font-mono">
         Comparison Analysis
       </h3>
       <div className="space-y-4">
@@ -27,11 +27,11 @@ export default function ComparisonChart({ scores }: ComparisonChartProps) {
           return (
             <div key={index} className="space-y-1.5 font-mono">
               <div className="flex justify-between items-center text-[10px] font-semibold">
-                <div className="flex items-center gap-2 text-zinc-400">
-                  <Icon className="h-4 w-4 text-zinc-650" />
+                <div className="flex items-center gap-2 text-slate-400">
+                  <Icon className="h-4 w-4 text-slate-650" />
                   <span>{item.label}</span>
                 </div>
-                <span className="text-zinc-350">{item.value}%</span>
+                <span className="text-slate-350">{item.value}%</span>
               </div>
               <div className="w-full bg-[#131D21] h-1.5 rounded overflow-hidden">
                 <div

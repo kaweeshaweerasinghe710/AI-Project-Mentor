@@ -84,9 +84,9 @@ export default function AnalyzerLoading({ repoUrl, onFinished }: AnalyzerLoading
       </div>
 
       {/* Terminal Output (Flat) */}
-      <div className="w-full rounded-lg border border-border bg-panel/30 p-4 font-mono text-[10px] text-zinc-450 shadow-xl h-60 flex flex-col">
+      <div className="w-full rounded-lg border border-border bg-panel/30 p-4 font-mono text-[10px] text-slate-450 shadow-xl h-60 flex flex-col">
         <div className="flex items-center justify-between border-b border-border/55 pb-2.5 mb-3">
-          <div className="flex items-center gap-2 text-zinc-550">
+          <div className="flex items-center gap-2 text-slate-550">
             <Terminal className="h-3.5 w-3.5" />
             <span className="font-bold uppercase tracking-wider">Audit Console</span>
           </div>
@@ -95,13 +95,13 @@ export default function AnalyzerLoading({ repoUrl, onFinished }: AnalyzerLoading
         
         <div className="flex-grow overflow-y-auto space-y-1.5 scrollbar-thin">
           {logs.length === 0 && (
-            <div className="text-zinc-650 animate-pulse">{"// Booting analyzer engines..."}</div>
+            <div className="text-slate-650 animate-pulse">{"// Booting analyzer engines..."}</div>
           )}
           {logs.map((log, index) => (
             <div
               key={index}
               className={`${
-                index === logs.length - 1 ? 'text-zinc-200' : 'text-zinc-500'
+                index === logs.length - 1 ? 'text-slate-200' : 'text-slate-500'
               } break-all`}
             >
               {log}

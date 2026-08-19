@@ -1,16 +1,16 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-/* 1. Graphite Design Tokens (Centralized Theme) */
+/* Navy Blue Design Tokens (Centralized Theme) */
 :root {
-  --background: #0c0c17;      
-  --foreground: #f4f4f5;      
-  --panel-bg: #18181b;         
-  --surface-bg: #27272a;       
-  --border-color: #27272a;     
+  --background: #020617;      
+  --foreground: #f8fafc;      
+  --panel-bg: #0f172a;         
+  --surface-bg: #1e293b;       
+  --border-color: #1e293b;     
   --accent-color: #08b168;     
   --accent-muted: rgba(6, 49, 15, 0.08);
-  --text-muted-color: #a1a1aa; 
+  --text-muted-color: #94a3b8; 
 }
 
 
@@ -24,7 +24,7 @@
   --color-accent-muted: var(--accent-muted);
   --color-muted: var(--text-muted-color);
   
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Poppins', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 

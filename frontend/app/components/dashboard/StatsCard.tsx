@@ -52,11 +52,11 @@ export default function StatsCard({ stats }: StatsCardProps) {
       </div>
       <div className="text-xs">
         <div className="flex justify-between items-center mb-3">
-          <span className="font-bold text-zinc-400 uppercase tracking-wider">Language Volume</span>
+          <span className="font-bold text-slate-400 uppercase tracking-wider">Language Volume</span>
           <span className="text-muted font-bold uppercase">{dominantLanguage} dominant</span>
         </div>
         
-        <div className="w-full h-1.5 rounded bg-zinc-900 overflow-hidden flex mb-4">
+        <div className="w-full h-1.5 rounded bg-slate-900 overflow-hidden flex mb-4">
           {stats.languages.map((lang, index) => (
             <div
               key={index}
@@ -74,7 +74,7 @@ export default function StatsCard({ stats }: StatsCardProps) {
           {stats.languages.map((lang, index) => (
             <div key={index} className="flex items-center gap-1.5 text-xs">
               <span className="h-1.5 w-1.5 rounded-sm" style={{ backgroundColor: lang.color }} />
-              <span className="text-zinc-400 font-bold uppercase">{lang.name}</span>
+              <span className="text-slate-400 font-bold uppercase">{lang.name}</span>
               <span className="text-muted font-bold font-mono">{lang.percentage.toFixed(1)}%</span>
             </div>
           ))}

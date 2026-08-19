@@ -4,11 +4,11 @@ import React from 'react';
 
 export default function ChatHeader() {
   return (
-    <div className="border-b border-border bg-zinc-950 px-5 py-4 flex items-center justify-between shrink-0 font-sans">
+    <div className="border-b border-border bg-slate-950 px-5 py-4 flex items-center justify-between shrink-0 font-sans">
       <div className="flex items-center gap-2.5">
         <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0 animate-pulse" />
         <div>
-          <h3 className="text-xs font-bold text-zinc-300 uppercase tracking-wider font-mono">
+          <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider font-mono">
             AI_SENIOR_ARCHITECT
           </h3>
         </div>

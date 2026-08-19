@@ -75,7 +75,7 @@ export default function LoginPage() {
                 className={`flex-1 py-2 text-[10px] uppercase font-bold rounded-sm transition duration-200 cursor-pointer select-none font-mono ${
                   activeTab === 'login'
                     ? 'bg-panel text-accent font-extrabold border border-border'
-                    : 'text-zinc-650 hover:text-zinc-450'
+                    : 'text-slate-650 hover:text-slate-450'
                 }`}
               >
                 Sign In
@@ -85,7 +85,7 @@ export default function LoginPage() {
                 className={`flex-1 py-2 text-[10px] uppercase font-bold rounded-sm transition duration-200 cursor-pointer select-none font-mono ${
                   activeTab === 'signup'
                     ? 'bg-panel text-accent font-extrabold border border-border'
-                    : 'text-zinc-650 hover:text-zinc-450'
+                    : 'text-slate-650 hover:text-slate-450'
                 }`}
               >
                 Register
@@ -99,7 +99,7 @@ export default function LoginPage() {
                   Email Address
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-650">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-650">
                     <Mail className="h-4 w-4" />
                   </div>
                   <input
@@ -108,7 +108,7 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@example.com"
-                    className="w-full pl-10 pr-4 py-2.5 bg-surface/50 border border-border text-zinc-300 rounded text-xs placeholder-zinc-700 focus:outline-none focus:border-accent transition duration-150"
+                    className="w-full pl-10 pr-4 py-2.5 bg-surface/50 border border-border text-slate-300 rounded text-xs placeholder-slate-700 focus:outline-none focus:border-accent transition duration-150"
                   />
                 </div>
               </div>
@@ -119,7 +119,7 @@ export default function LoginPage() {
                   Password
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-650">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-650">
                     <Lock className="h-4 w-4" />
                   </div>
                   <input
@@ -128,7 +128,7 @@ export default function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-4 py-2.5 bg-surface/50 border border-border text-zinc-300 rounded text-xs placeholder-zinc-700 focus:outline-none focus:border-accent transition duration-150"
+                    className="w-full pl-10 pr-4 py-2.5 bg-surface/50 border border-border text-slate-300 rounded text-xs placeholder-slate-700 focus:outline-none focus:border-accent transition duration-150"
                   />
                 </div>
               </div>
@@ -140,7 +140,7 @@ export default function LoginPage() {
                     Confirm Password
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-650">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-650">
                       <Lock className="h-4 w-4" />
                     </div>
                     <input
@@ -149,7 +149,7 @@ export default function LoginPage() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full pl-10 pr-4 py-2.5 bg-surface/50 border border-border text-zinc-300 rounded text-xs placeholder-zinc-700 focus:outline-none focus:border-accent transition duration-150"
+                      className="w-full pl-10 pr-4 py-2.5 bg-surface/50 border border-border text-slate-300 rounded text-xs placeholder-slate-700 focus:outline-none focus:border-accent transition duration-150"
                     />
                   </div>
                 </div>
@@ -176,7 +176,7 @@ export default function LoginPage() {
                   <div className="w-full border-t border-border" />
                 </div>
                 <div className="relative flex justify-center text-[9px] uppercase font-bold">
-                  <span className="bg-[#19262C] px-2 text-zinc-550">Or authenticate via</span>
+                  <span className="bg-[#19262C] px-2 text-slate-550">Or authenticate via</span>
                 </div>
               </div>
 

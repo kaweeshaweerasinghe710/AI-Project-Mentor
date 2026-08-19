@@ -19,7 +19,7 @@ export default function AdminHeader({ onAddAdmin, onChangePassword, onSignOut }:
         <div className="flex items-center gap-3 font-mono">
           <button 
             onClick={onChangePassword}
-            className="flex items-center gap-1.5 rounded border border-border bg-panel px-3.5 py-1.5 text-[10px] text-zinc-400 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
+            className="flex items-center gap-1.5 rounded border border-border bg-panel px-3.5 py-1.5 text-[10px] text-slate-400 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
           >
             Change Password
           </button>
@@ -33,7 +33,7 @@ export default function AdminHeader({ onAddAdmin, onChangePassword, onSignOut }:
 
           <button 
             onClick={onSignOut}
-            className="flex items-center gap-1.5 rounded border border-border bg-panel px-3.5 py-1.5 text-[10px] text-zinc-400 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
+            className="flex items-center gap-1.5 rounded border border-border bg-panel px-3.5 py-1.5 text-[10px] text-slate-400 hover:border-accent hover:text-accent transition duration-200 cursor-pointer"
           >
             Sign Out
           </button>

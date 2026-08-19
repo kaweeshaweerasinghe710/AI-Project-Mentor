@@ -23,7 +23,7 @@ export default function FormField({ label, type, value, onChange, placeholder, r
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className={`w-full px-3 py-2 bg-surface/50 border border-border text-zinc-300 rounded focus:outline-none focus:border-accent text-xs ${type === 'password' ? 'font-sans' : ''}`}
+        className={`w-full px-3 py-2 bg-surface/50 border border-border text-slate-300 rounded focus:outline-none focus:border-accent text-xs ${type === 'password' ? 'font-sans' : ''}`}
       />
     </div>
   );

@@ -43,7 +43,7 @@ export default function ReviewNavBar({
                 ? 'w-6 h-2.5 bg-accent'
                 : reviewedIds.includes(questionIds[i])
                 ? 'w-2.5 h-2.5 bg-accent/40'
-                : 'w-2.5 h-2.5 bg-border hover:bg-zinc-500'
+                : 'w-2.5 h-2.5 bg-border hover:bg-slate-500'
             }`}
           />
         ))}

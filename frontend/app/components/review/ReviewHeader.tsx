@@ -39,7 +39,7 @@ export default function ReviewHeader({
               style={{ width: `${progressPercent}%` }}
             />
           </div>
-          <div className="text-[10px] text-zinc-500 flex justify-between">
+          <div className="text-[10px] text-slate-500 flex justify-between">
             <span className="font-mono">{reviewedCount} OF {totalCount} REVIEWED</span>
             {reviewedCount > 0 && (
               <button

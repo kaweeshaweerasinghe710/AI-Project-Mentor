@@ -34,13 +34,13 @@ function renderFormattedText(text: string): React.ReactNode {
       return (
         <div key={lineIdx} className="flex gap-2 items-start">
           <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
-          <p className="text-sm text-zinc-200 leading-relaxed font-sans">{rendered}</p>
+          <p className="text-sm text-slate-200 leading-relaxed font-sans">{rendered}</p>
         </div>
       );
     }
 
     return (
-      <p key={lineIdx} className="text-sm text-zinc-200 leading-relaxed font-sans">
+      <p key={lineIdx} className="text-sm text-slate-200 leading-relaxed font-sans">
         {rendered}
       </p>
     );
@@ -55,11 +55,11 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
       isUser ? 'self-end items-end' : 'self-start items-start'
     }`}>
       {/* Sender label */}
-      <div className={`text-[9px] font-bold text-zinc-500 uppercase tracking-widest px-1 ${
+      <div className={`text-[9px] font-bold text-slate-500 uppercase tracking-widest px-1 ${
         isUser ? 'text-right' : 'text-left'
       }`}>
         {isUser ? '[YOU]' : '[AI_ARCHITECT]'} &middot;{' '}
-        <span className="text-zinc-600 font-normal">{message.timestamp}</span>
+        <span className="text-slate-600 font-normal">{message.timestamp}</span>
       </div>
       <div className={`px-3 py-2 ${
         isUser
@@ -67,7 +67,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
           : ''
       }`}>
         {isUser ? (
-          <p className="text-sm font-sans text-zinc-200 leading-relaxed">{message.text}</p>
+          <p className="text-sm font-sans text-slate-200 leading-relaxed">{message.text}</p>
         ) : (
           <div className="space-y-1.5">
             {renderFormattedText(message.text)}
@@ -76,10 +76,10 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
 
         {message.code && (
           <div className="mt-3 rounded border border-border bg-surface overflow-hidden text-[10px] select-text">
-            <div className="bg-panel border-b border-border px-3 py-1.5 text-zinc-500 flex justify-between select-none">
+            <div className="bg-panel border-b border-border px-3 py-1.5 text-slate-500 flex justify-between select-none">
               <span>SUGGESTED_FIX</span>
             </div>
-            <pre className="p-3 overflow-x-auto text-zinc-400 text-left">
+            <pre className="p-3 overflow-x-auto text-slate-400 text-left">
               <code>{message.code}</code>
             </pre>
           </div>

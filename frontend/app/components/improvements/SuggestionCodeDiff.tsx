@@ -20,7 +20,7 @@ export default function SuggestionCodeDiff({ suggestion }: SuggestionCodeDiffPro
             <span className="font-extrabold text-muted block uppercase tracking-wider text-[9px] mb-1 font-mono">
               Architectural Impact
             </span>
-            <span className="text-zinc-300 leading-relaxed text-xs">
+            <span className="text-slate-300 leading-relaxed text-xs">
               {suggestion.impact}
             </span>
           </div>
@@ -31,7 +31,7 @@ export default function SuggestionCodeDiff({ suggestion }: SuggestionCodeDiffPro
             <span className="font-extrabold text-muted block uppercase tracking-wider text-[9px] mb-1 font-mono">
               Refactoring Effort
             </span>
-            <span className="text-zinc-300 leading-relaxed text-xs">
+            <span className="text-slate-300 leading-relaxed text-xs">
               {suggestion.effort}
             </span>
           </div>
@@ -51,7 +51,7 @@ export default function SuggestionCodeDiff({ suggestion }: SuggestionCodeDiffPro
               className={`px-3 py-1 text-[9px] uppercase font-bold rounded-sm transition duration-200 cursor-pointer select-none font-mono ${
                 codeTab === 'before'
                   ? 'bg-panel text-accent font-extrabold border border-border'
-                  : 'text-zinc-500 hover:text-zinc-400'
+                  : 'text-slate-500 hover:text-slate-400'
               }`}
             >
               Vulnerable Code
@@ -61,7 +61,7 @@ export default function SuggestionCodeDiff({ suggestion }: SuggestionCodeDiffPro
               className={`px-3 py-1 text-[9px] uppercase font-bold rounded-sm transition duration-200 cursor-pointer select-none font-mono ${
                 codeTab === 'after'
                   ? 'bg-panel text-accent font-extrabold border border-border'
-                  : 'text-zinc-500 hover:text-zinc-400'
+                  : 'text-slate-500 hover:text-slate-400'
               }`}
             >
               Refactored Fix
@@ -70,10 +70,10 @@ export default function SuggestionCodeDiff({ suggestion }: SuggestionCodeDiffPro
         </div>
 
         <div className="relative rounded border border-border bg-surface overflow-hidden">
-          <div className="absolute top-2.5 right-2.5 text-[9px] text-zinc-650 bg-panel px-2 py-0.5 rounded border border-border font-mono">
+          <div className="absolute top-2.5 right-2.5 text-[9px] text-slate-650 bg-panel px-2 py-0.5 rounded border border-border font-mono">
             {codeTab === 'before' ? 'Original' : 'Optimized'}
           </div>
-          <pre className="p-4 overflow-x-auto text-[10px] text-zinc-400 leading-relaxed font-mono">
+          <pre className="p-4 overflow-x-auto text-[10px] text-slate-400 leading-relaxed font-mono">
             <code>{codeTab === 'before' ? suggestion.beforeCode : suggestion.afterCode}</code>
           </pre>
         </div>

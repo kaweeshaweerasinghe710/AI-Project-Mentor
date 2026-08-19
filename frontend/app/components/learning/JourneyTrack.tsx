@@ -55,7 +55,7 @@ export default function JourneyTrack({ steps, selectedIdx, doneCount, onSelectSt
                         ? `bg-accent border-accent text-background`
                         : isSelected
                         ? 'bg-panel border-accent text-accent'
-                        : 'bg-panel border-zinc-600 text-zinc-400 hover:border-zinc-400 hover:text-zinc-200'
+                        : 'bg-panel border-slate-600 text-slate-400 hover:border-slate-400 hover:text-slate-200'
                     }`}
                   >
                     {step.isCompleted

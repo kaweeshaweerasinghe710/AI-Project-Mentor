@@ -29,7 +29,7 @@ export default function QuestionHeader({
           {isReviewed ? (
             <CheckCircle2 className="h-4.5 w-4.5 text-accent" />
           ) : (
-            <Circle className="h-4.5 w-4.5 text-zinc-600" />
+            <Circle className="h-4.5 w-4.5 text-slate-600" />
           )}
         </button>
         <div className="space-y-1">

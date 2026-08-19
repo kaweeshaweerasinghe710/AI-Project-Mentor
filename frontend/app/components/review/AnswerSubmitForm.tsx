@@ -34,7 +34,7 @@ export default function AnswerSubmitForm({
           onChange={(e) => onDraftChange(e.target.value)}
           disabled={disabled}
           placeholder="Write your answer here, then click Submit for feedback..."
-          className="w-full bg-surface/60 border border-border text-zinc-200 rounded-lg p-4 font-sans text-sm placeholder-zinc-600 focus:outline-none focus:border-accent transition duration-150 resize-none leading-relaxed disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full bg-surface/60 border border-border text-slate-200 rounded-lg p-4 font-sans text-sm placeholder-slate-600 focus:outline-none focus:border-accent transition duration-150 resize-none leading-relaxed disabled:opacity-60 disabled:cursor-not-allowed"
         />
       </div>
       {!hasSubmitted ? (

@@ -43,7 +43,7 @@ export default function RepoInput({ onStartAnalysis }: RepoInputProps) {
             value={repoUrl}
             onChange={(e) => setRepoUrl(e.target.value)}
             placeholder="Repository link... e.g., https://github.com/vibe-labs/go-websocket-chat"
-            className="w-full bg-transparent border-0 text-foreground placeholder-zinc-700 focus:outline-none focus:ring-0 text-xs px-3.5 py-2.5 font-mono"
+            className="w-full bg-transparent border-0 text-foreground placeholder-slate-700 focus:outline-none focus:ring-0 text-xs px-3.5 py-2.5 font-mono"
           />
           <button
             type="submit"

@@ -32,7 +32,7 @@ export default function AdminDashboard() {
         <div className="max-w-md w-full rounded-lg border border-red-900/30 bg-[#1A1012] p-8 text-center space-y-6">
           <AlertOctagon className="h-12 w-12 text-red-500 mx-auto" />
           <h2 className="text-sm font-bold text-red-400 uppercase tracking-widest font-mono">ACCESS DENIED</h2>
-          <p className="text-zinc-400 leading-relaxed font-sans">{error}</p>
+          <p className="text-slate-400 leading-relaxed font-sans">{error}</p>
           <div className="pt-4 font-mono">
             <Link 
               href="/" 
