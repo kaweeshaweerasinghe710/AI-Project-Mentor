@@ -23,7 +23,7 @@ export function useChatMessages(result: AnalysisResult) {
       if (!result.id) return;
       try {
         const token = localStorage.getItem('user_token');
-        const response = await fetch(`http://localhost:5000/api/chat/${result.id}`, {
+        const response = await fetch(`http://13.239.146.29.nip.io:5000/api/chat/${result.id}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -75,7 +75,7 @@ export function useChatMessages(result: AnalysisResult) {
     try {
       const token = localStorage.getItem('user_token');
       
-      const response = await fetch(`http://localhost:5000/api/chat/${result.id}`, {
+      const response = await fetch(`http://13.239.146.29.nip.io:5000/api/chat/${result.id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

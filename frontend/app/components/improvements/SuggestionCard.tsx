@@ -31,7 +31,7 @@ export default function SuggestionCard({ suggestion }: SuggestionCardProps) {
     setAutoFix(null);
     try {
       const token = localStorage.getItem('user_token');
-      const res   = await fetch('http://localhost:5000/api/autofix/generate', {
+      const res   = await fetch('http://13.239.146.29.nip.io:5000/api/autofix/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

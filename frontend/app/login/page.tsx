@@ -185,7 +185,7 @@ export default function LoginPage() {
                   onSuccess={async (credentialResponse) => {
                     setError('');
                     try {
-                      const res = await fetch('http://localhost:5000/api/auth/google', {
+                      const res = await fetch('http://13.239.146.29.nip.io:5000/api/auth/google', {
                         method: 'POST',
                         headers: {
                           'Content-Type': 'application/json'

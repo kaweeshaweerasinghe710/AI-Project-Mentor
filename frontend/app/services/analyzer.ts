@@ -77,7 +77,7 @@ export function mapBackendProjectToFrontend(project: any): AnalysisResult {
 export async function analyzeRepositoryAPI(repoUrl: string): Promise<AnalysisResult> {
   const token = localStorage.getItem('user_token');
   
-  const response = await fetch('http://localhost:5000/api/analysis', {
+  const response = await fetch('http://13.239.146.29.nip.io:5000/api/analysis', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

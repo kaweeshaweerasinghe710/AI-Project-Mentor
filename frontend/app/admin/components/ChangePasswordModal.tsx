@@ -31,7 +31,7 @@ export default function ChangePasswordModal({ onClose }: ChangePasswordProps) {
     try {
       const token = localStorage.getItem('user_token');
       
-      const response = await fetch('http://localhost:5000/api/auth/change-password', {
+      const response = await fetch('http://13.239.146.29.nip.io:5000/api/auth/change-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

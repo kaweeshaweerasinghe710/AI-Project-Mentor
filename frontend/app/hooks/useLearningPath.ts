@@ -12,7 +12,7 @@ export function useLearningPath() {
   const fetchLearningPath = useCallback(async () => {
     try {
       const token = localStorage.getItem('user_token');
-      const res = await fetch('http://localhost:5000/api/learning', {
+      const res = await fetch('http://13.239.146.29.nip.io:5000/api/learning', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('Failed to fetch');
@@ -34,7 +34,7 @@ export function useLearningPath() {
     setCompletingId(stepId);
     try {
       const token = localStorage.getItem('user_token');
-      const res = await fetch(`http://localhost:5000/api/learning/step/${stepId}/complete`, {
+      const res = await fetch(`http://13.239.146.29.nip.io:5000/api/learning/step/${stepId}/complete`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` },
       });

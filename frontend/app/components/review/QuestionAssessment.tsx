@@ -42,7 +42,7 @@ export default function QuestionAssessment({
 
     try {
       const token = localStorage.getItem('user_token');
-      const res   = await fetch('http://localhost:5000/api/review/evaluate', {
+      const res   = await fetch('http://13.239.146.29.nip.io:5000/api/review/evaluate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

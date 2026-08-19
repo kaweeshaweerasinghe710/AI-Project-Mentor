@@ -28,7 +28,7 @@ export function useAdminStats(router: any) {
           router.push('/login');
           return;
         }
-        const response = await fetch('http://localhost:5000/api/admin/stats/registrations', {
+        const response = await fetch('http://13.239.146.29.nip.io:5000/api/admin/stats/registrations', {
           headers: {
             'Authorization': `Bearer ${token}`
           }

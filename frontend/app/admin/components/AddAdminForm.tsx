@@ -25,7 +25,7 @@ export default function AddAdminForm({ onClose }: AddAdminFormProps) {
     try {
       const token = localStorage.getItem('user_token');
       
-      const response = await fetch('http://localhost:5000/api/admin/create-admin', {
+      const response = await fetch('http://13.239.146.29.nip.io:5000/api/admin/create-admin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

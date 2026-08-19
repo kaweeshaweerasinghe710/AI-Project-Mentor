@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://13.239.146.29.nip.io:5000/api';
 
 
 export async function signup(email: string, password: string) {
