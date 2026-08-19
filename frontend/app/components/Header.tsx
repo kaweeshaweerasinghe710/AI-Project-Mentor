@@ -20,14 +20,7 @@ export default function Header({ repoName, onReset, userEmail, onSignOut }: Head
           <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-panel text-accent group-hover:border-accent group-hover:rotate-6 transition-all duration-300">
             <Bot className="h-5 w-5" />
           </div>
-          <div className="flex flex-col">
-            <span className="text-xs font-bold tracking-widest text-foreground font-mono group-hover:text-accent transition duration-200">
-              AI_PROJECT_MENTOR
-            </span>
-            <span className="text-[9px] font-bold text-muted uppercase tracking-wider leading-none mt-0.5">
-              Code Architecture Reviews
-            </span>
-          </div>
+          
         </div>
 
         {/* Central Repository Metadata */}
