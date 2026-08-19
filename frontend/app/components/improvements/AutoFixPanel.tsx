@@ -10,7 +10,7 @@ interface AutoFixPanelProps {
 
 export default function AutoFixPanel({ autoFix, fixExplanation, copied, onCopy }: AutoFixPanelProps) {
   return (
-    <div className="rounded-lg border border-violet-500/20 bg-violet-500/5 p-4 space-y-3 animate-slide-up">
+    <div className="space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-violet-400 flex items-center gap-1.5">

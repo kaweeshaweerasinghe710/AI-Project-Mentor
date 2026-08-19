@@ -83,30 +83,34 @@ export default function SuggestionHeader({
             onToggleFix={onToggleFix}
             onAutoFix={onAutoFix}
           />
-          {showProblem && sections['problem'] && (
-            <div className="rounded-lg border border-rose-500/20 bg-rose-500/5 p-4 animate-slide-up">
-              <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-rose-400 mb-1.5">
-                🐛 Problem
-              </p>
-              <p className="text-sm text-zinc-200 leading-relaxed">{sections['problem']}</p>
-            </div>
-          )}
-          {showFix && sections['fix'] && (
-            <div className="rounded-lg border border-accent/20 bg-accent/5 p-4 animate-slide-up">
-              <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-accent mb-1.5">
-                🔧 Fix
-              </p>
-              <p className="text-sm text-zinc-200 leading-relaxed">{sections['fix']}</p>
-            </div>
-          )}
-          {autoFix && (
-            <AutoFixPanel
-              autoFix={autoFix}
-              fixExplanation={fixExplanation}
-              copied={copied}
-              onCopy={onCopy}
-            />
-          )}
+          <div className="flex flex-col md:flex-row gap-6 mt-4">
+            {showProblem && sections['problem'] && (
+              <div className="flex-1 animate-slide-up">
+                <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-rose-400 mb-1.5">
+                  🐛 Problem
+                </p>
+                <p className="text-sm text-zinc-200 leading-relaxed">{sections['problem']}</p>
+              </div>
+            )}
+            {showFix && sections['fix'] && (
+              <div className="flex-1 animate-slide-up">
+                <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-accent mb-1.5">
+                  🔧 Fix
+                </p>
+                <p className="text-sm text-zinc-200 leading-relaxed">{sections['fix']}</p>
+              </div>
+            )}
+            {autoFix && (
+              <div className="flex-1 animate-slide-up">
+                <AutoFixPanel
+                  autoFix={autoFix}
+                  fixExplanation={fixExplanation}
+                  copied={copied}
+                  onCopy={onCopy}
+                />
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
